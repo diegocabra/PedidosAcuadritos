@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "859940802816",
+    "firebase_url": "https://pedidosacuadritos.firebaseio.com",
+    "project_id": "pedidosacuadritos",
+    "storage_bucket": "pedidosacuadritos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859940802816:android:04f678516501308b0fe3e5",
+        "android_client_info": {
+          "package_name": "com.example.pedidosacuadritos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859940802816-1t3ur3j8j16tgb6s72575icdnsvv6ie5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pedidosacuadritos",
+            "certificate_hash": "16c3b2b0f44c57c837bc7e207988deb7735e71a3"
+          }
+        },
+        {
+          "client_id": "859940802816-6mc4shbknmjenhi8v9gtmntolb99u9tj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGtLDXZhyLtcMKIXDlVAt0m219wJXBBHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859940802816-6mc4shbknmjenhi8v9gtmntolb99u9tj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

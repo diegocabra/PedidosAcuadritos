@@ -1,4 +1,4 @@
-package com.example.pedidosacuadritos;
+package com.example.pedidosacuadritos.Pedido;
 
 import java.util.Calendar;
 import java.util.Date;
