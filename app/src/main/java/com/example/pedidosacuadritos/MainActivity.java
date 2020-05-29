@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         pager = findViewById(R.id.viewpager);
         mTabLayout = findViewById(R.id.tablayout);
