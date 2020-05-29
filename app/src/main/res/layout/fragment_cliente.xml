@@ -12,30 +12,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="133dp"
+            android:layout_height="232dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_cliente"
-                android:layout_width="match_parent"
-                android:layout_height="29dp"
-                android:text="Cliente" />
-
             <EditText
-                android:id="@+id/eT_Cliente"
+                android:id="@+id/eT_Nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:ems="10"
                 android:hint="Nombre"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/eT_Telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/eT_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email "
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/eT_Ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ciudad"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/bt_okCliente"
+            android:id="@+id/bt_Agregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar" />
+            android:text="Agregar" />
 
     </LinearLayout>
 </FrameLayout>
