@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/eT_Nombre"
+                android:id="@+id/et_Nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -24,7 +24,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/eT_Telefono"
+                android:id="@+id/et_Telefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -32,7 +32,7 @@
                 android:inputType="phone" />
 
             <EditText
-                android:id="@+id/eT_Email"
+                android:id="@+id/et_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -40,7 +40,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/eT_Ciudad"
+                android:id="@+id/et_Ciudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
