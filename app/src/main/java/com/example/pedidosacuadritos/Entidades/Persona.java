@@ -4,25 +4,27 @@ import java.io.Serializable;
 
 public abstract class Persona implements Serializable {
 
-    protected Integer id;
+    protected String id;
     protected String nombre;
     protected String telefono;
     protected String localidad;
     protected String direccion;
 
+    public Persona(){
 
-    public Persona(Integer id, String nombre, String telefono, String localidad) {
+    }
+    public Persona(String id, String nombre, String telefono, String localidad) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.localidad = localidad;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

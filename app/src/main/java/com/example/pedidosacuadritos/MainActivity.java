@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     TabItem firstItem,secondItem,thirdItem;
     PagerAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
 
         pager = findViewById(R.id.viewpager);
         mTabLayout = findViewById(R.id.tablayout);

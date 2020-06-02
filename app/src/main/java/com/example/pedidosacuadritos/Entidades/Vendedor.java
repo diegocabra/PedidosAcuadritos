@@ -5,9 +5,12 @@ public class Vendedor extends Persona {
 
     private int ganancia;
 
-    public Vendedor(Integer id, String nombre, String telefono, String localidad , int ganancia) {
+    public Vendedor(String id, String nombre, String telefono, String localidad , int ganancia) {
         super(id, nombre, telefono, localidad);
         this.ganancia = ganancia;
+    }
+    public Vendedor(){
+
     }
 
     public void setGanancia(int ganancia){
