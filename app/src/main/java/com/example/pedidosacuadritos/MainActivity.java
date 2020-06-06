@@ -16,7 +16,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
+import com.example.pedidosacuadritos.BaseDatoService;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -33,7 +34,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+
         //setSupportActionBar(toolbar);
+
+
+
 
 
         pager = findViewById(R.id.viewpager);
@@ -76,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
 
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

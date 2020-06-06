@@ -15,12 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.pedidosacuadritos.BaseDatoService;
 import java.util.UUID;
 
 import com.example.pedidosacuadritos.Entidades.Cliente;
@@ -32,7 +27,7 @@ public class First_ClienteFragment extends Fragment {
 
    private EditText getEt_Nombre, getEt_Email,getEt_Telefono,getEt_Ciudad;
    private Button bt_Agregar;
-    DatabaseReference myRef;
+
 
     public First_ClienteFragment() {
         // Required empty public constructor
@@ -61,18 +56,20 @@ public class First_ClienteFragment extends Fragment {
 
 
 
-        inicializarFirebase();
+        //inicializarFirebase();
 
 
         bt_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camposObligatorios();//Antes de guardar , se fija que tengan los campos obligatorios validos.
-                Cliente Nuevo = new Cliente(UUID.randomUUID().toString(),getEt_Nombre.getText().toString(),getEt_Telefono.getText().toString(),getEt_Ciudad.getText().toString());
-            //    Log.e(tag: "Ciudad", msg:""+getEt_Ciudad.getText().toString());
-                Log.e("Cliente",""+"Nombre :"+Nuevo.getNombre()+"Localidad :"+Nuevo.getLocalidad()+"- Telefono :"+Nuevo.getTelefono()+"-ID :"+Nuevo.getId());
+                Cliente Nuevo = new Cliente(UUID.randomUUID().toString(), getEt_Nombre.getText().toString(), getEt_Telefono.getText().toString(), getEt_Ciudad.getText().toString());
+                //    Log.e(tag: "Ciudad", msg:""+getEt_Ciudad.getText().toString());
+                //  Log.e("Cliente",""+"Nombre :"+Nuevo.getNombre()+"Localidad :"+Nuevo.getLocalidad()+"- Telefono :"+Nuevo.getTelefono()+"-ID :"+Nuevo.getId());
                 //UUID.randomUUID().toString()
-               // myRef.child("Cliente").child(Nuevo.getId()).setValue(Nuevo);
+                BaseDatoService Instancia = BaseDatoService.getInstance();
+                Instancia.write(Nuevo);
+              // myRef.child("Cliente").child(Nuevo.getId()).setValue(Nuevo);
             }
         });
 
@@ -81,13 +78,7 @@ public class First_ClienteFragment extends Fragment {
 
     }
 
-    private void inicializarFirebase() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
 
-
-
-    }
 
     // REVISAR ESTA VALIDACION CHOTA ; no controla ambas.
     private void camposObligatorios() {
