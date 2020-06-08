@@ -48,6 +48,11 @@
                 android:inputType="textPersonName" />
         </LinearLayout>
 
+        <ListView
+            android:id="@+id/listV_Clientes"
+            android:layout_width="match_parent"
+            android:layout_height="128dp" />
+
         <Button
             android:id="@+id/bt_Agregar"
             android:layout_width="match_parent"

@@ -1,15 +1,24 @@
 package com.example.pedidosacuadritos;
 
-import com.example.pedidosacuadritos.Entidades.Persona;
+import androidx.annotation.NonNull;
+
+import com.example.pedidosacuadritos.Entidades.Cliente;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 //Mediante la siguiente clase vamos a conectar el fragment necesario a la base de datos,Firebase.
 public class BaseDatoService {
 
 
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference myRef;
     private static BaseDatoService instance;
 
 
@@ -27,14 +36,34 @@ public class BaseDatoService {
 
     }
 
-    public void write(Persona persona){
+    public void write(Cliente persona){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        //myRef.setValue("Hello, World!");
+        DatabaseReference myRef = database.getReference("Clientes");
+      //  database.setPersistenceEnabled(true);
         myRef.child("Cliente").child(persona.getId()).setValue(persona);
 
+    }
+
+    public List<Cliente> listarDatos(){
+        final List<Cliente> ListaClientes = new ArrayList<Cliente>();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Clientes");
+        myRef.child("Cliente").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot objSnapshot : dataSnapshot.getChildren()){
+                    Cliente p = objSnapshot.getValue(Cliente.class);
+                    ListaClientes.add(p);}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            int i;
+            }
+        });
+        return ListaClientes;
     }
 
     public void basicReadWrite() {
