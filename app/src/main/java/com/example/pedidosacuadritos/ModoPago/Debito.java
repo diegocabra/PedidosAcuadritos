@@ -1,6 +1,6 @@
 package com.example.pedidosacuadritos.ModoPago;
 
-import com.example.pedidosacuadritos.Productos.Producto;
+import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 
 public class Debito extends ModoPago {
 

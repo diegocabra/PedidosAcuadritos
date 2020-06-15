@@ -13,11 +13,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.pedidosacuadritos.Utilidades.PagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.example.pedidosacuadritos.BaseDatoService;
-import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
-
+        //revisar esta mierda del toolbar
         //setSupportActionBar(toolbar);
 
 

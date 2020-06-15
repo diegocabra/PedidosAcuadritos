@@ -1,4 +1,4 @@
-package com.example.pedidosacuadritos.Entidades;
+package com.example.pedidosacuadritos.Entidades.Persona;
 
 import java.io.Serializable;
 
@@ -9,15 +9,26 @@ public abstract class Persona implements Serializable {
     protected String telefono;
     protected String localidad;
     protected String direccion;
+    protected String email;
 
     public Persona(){
 
     }
-    public Persona(String id, String nombre, String telefono, String localidad) {
+    public Persona(String id, String nombre, String telefono, String localidad,String email) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.localidad = localidad;
+        this.email = email;
+
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getId() {
@@ -58,6 +69,10 @@ public abstract class Persona implements Serializable {
 
     public String getDireccion() {
         return direccion;
+    }
+
+    public String toString(){
+        return nombre;
     }
 }
 

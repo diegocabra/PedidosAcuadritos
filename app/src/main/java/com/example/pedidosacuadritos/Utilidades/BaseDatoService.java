@@ -1,9 +1,9 @@
-package com.example.pedidosacuadritos;
+package com.example.pedidosacuadritos.Utilidades;
 
 import androidx.annotation.NonNull;
 
-import com.example.pedidosacuadritos.Entidades.Cliente;
-import com.google.firebase.FirebaseApp;
+import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
+import com.example.pedidosacuadritos.Entidades.Persona.Persona;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +36,7 @@ public class BaseDatoService {
 
     }
 
-    public void write(Cliente persona){
+    public void write(Persona persona){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Clientes");
@@ -53,6 +53,7 @@ public class BaseDatoService {
         myRef.child("Cliente").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ListaClientes.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()){
                     Cliente p = objSnapshot.getValue(Cliente.class);
                     ListaClientes.add(p);}
@@ -65,6 +66,8 @@ public class BaseDatoService {
         });
         return ListaClientes;
     }
+
+
 
     public void basicReadWrite() {
         // [START write_message]

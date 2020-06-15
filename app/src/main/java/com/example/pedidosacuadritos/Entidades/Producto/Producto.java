@@ -1,5 +1,5 @@
-package com.example.pedidosacuadritos.Productos;
-
+package com.example.pedidosacuadritos.Entidades.Producto;
+import java.util.ArrayList;
 public abstract class Producto {
     protected double precio;
     protected double cantTela;
@@ -7,6 +7,7 @@ public abstract class Producto {
     protected String bolsillo;
     protected String bies1;
     protected String bies2;
+    protected String id;
 
     public int getCantCierres() {
         return cantCierres;
@@ -52,7 +53,8 @@ public abstract class Producto {
         this.bies2 = bies2;
     }
 
-    public Producto(String tela, String bolsillo, String bies1, String bies2) {
+    public Producto(String id,String tela, String bolsillo, String bies1, String bies2) {
+        this.id = id;
         this.tela = tela;
         this.bolsillo = bolsillo;
         this.bies1 = bies1;
@@ -76,6 +78,8 @@ public abstract class Producto {
     public void setCantTela(int cantTela) {
         this.cantTela = cantTela;
     }
+
+
 
 
 }

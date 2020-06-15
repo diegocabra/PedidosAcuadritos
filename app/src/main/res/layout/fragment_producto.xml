@@ -1,42 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Second_ProductoFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewProductos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Tipo Producto"
-            android:textColor="#9C27B0"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rG_productos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RadioButton
-                android:id="@+id/rb_Ninos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jardin" />
-
-            <RadioButton
-                android:id="@+id/rb_Adulto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Adulto" />
-
-        </RadioGroup>
-    </LinearLayout>
-</FrameLayout>
+            android:layout_height="match_parent"
+            android:clickable="true"
+            tools:listitem="@layout/recycler_view_item_1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,9 +1,13 @@
-package com.example.pedidosacuadritos;
+package com.example.pedidosacuadritos.Utilidades;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.pedidosacuadritos.First_ClienteFragment;
+import com.example.pedidosacuadritos.Second_ProductoFragment;
+import com.example.pedidosacuadritos.Third;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 private int tabsNumber;

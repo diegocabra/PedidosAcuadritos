@@ -1,10 +1,12 @@
 package com.example.pedidosacuadritos.Pedido;
 
-import java.util.Calendar;
 import java.util.Date;
-import com.example.pedidosacuadritos.Productos.Producto;
+
+import com.example.pedidosacuadritos.Entidades.Persona.Vendedor;
+import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.ModoPago.ModoPago;
-import com.example.pedidosacuadritos.Entidades.*;
+import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
+
 public class Pedido {
 
     protected Producto producto;

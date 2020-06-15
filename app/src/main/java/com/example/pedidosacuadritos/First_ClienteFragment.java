@@ -5,25 +5,24 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.example.pedidosacuadritos.BaseDatoService;
+import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.pedidosacuadritos.Entidades.Cliente;
+import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
+import com.example.pedidosacuadritos.Entidades.Persona.Persona;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,16 +30,16 @@ import com.example.pedidosacuadritos.Entidades.Cliente;
 public class First_ClienteFragment extends Fragment {
 
 
+    ArrayAdapter<Cliente> arrayAdapterCliente;
     private EditText getEt_Nombre, getEt_Email, getEt_Telefono, getEt_Ciudad;
-    private Button bt_Agregar;
+    private Button bt_Agregar, bt_Actualizar, bt_Eliminar;
     private ListView listV_Clientes;
     private List<Cliente> listaClientes = new ArrayList<Cliente>();
-    ArrayAdapter<Cliente> arrayAdapterCliente;
+    private Persona personaSeleccionada;
 
     public First_ClienteFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,18 +54,39 @@ public class First_ClienteFragment extends Fragment {
         getEt_Email = getView().findViewById(R.id.et_Email);
         getEt_Ciudad = getView().findViewById(R.id.et_Ciudad);
         bt_Agregar = getView().findViewById(R.id.bt_Agregar);
-        ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
+        bt_Actualizar = getView().findViewById(R.id.bt_Actualizar);
+
+        final ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
         BaseDatoService Basedatos = BaseDatoService.getInstance();
         listaClientes = Basedatos.listarDatos();
         arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);
         listV_Clientes.setAdapter(arrayAdapterCliente);
 
+
+        personaSeleccionada = PersonaSeleccionado(listV_Clientes);
+        bt_Actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Persona P = new Cliente();
+                P.setId(personaSeleccionada.getId());
+                P.setNombre(getEt_Nombre.getText().toString());
+                P.setEmail(getEt_Email.getText().toString());
+                P.setLocalidad(getEt_Ciudad.getText().toString());
+                P.setTelefono(getEt_Telefono.getText().toString());
+                BaseDatoService Basedatos = BaseDatoService.getInstance();
+                Basedatos.write(P);
+                Toast.makeText(getActivity(), "Cliente Actualizado", Toast.LENGTH_SHORT).show();
+                limpiarEditTexts();
+
+            }
+        });
+
+
         bt_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camposObligatorios();//Antes de guardar , se fija que tengan los campos obligatorios validos.
-                Cliente Nuevo = new Cliente(UUID.randomUUID().toString(), getEt_Nombre.getText().toString(), getEt_Telefono.getText().toString(), getEt_Ciudad.getText().toString());
-                //  Log.e("Cliente",""+"Nombre :"+Nuevo.getNombre()+"Localidad :"+Nuevo.getLocalidad()+"- Telefono :"+Nuevo.getTelefono()+"-ID :"+Nuevo.getId());
+                Cliente Nuevo = new Cliente(UUID.randomUUID().toString(), getEt_Nombre.getText().toString(), getEt_Telefono.getText().toString(), getEt_Ciudad.getText().toString(), getEt_Email.getText().toString());
                 BaseDatoService Basedatos = BaseDatoService.getInstance();
                 Basedatos.write(Nuevo);
                 Toast.makeText(getActivity(), "Cliente Agregado", Toast.LENGTH_SHORT).show();
@@ -74,6 +94,20 @@ public class First_ClienteFragment extends Fragment {
             }
         });
 
+    }
+
+    private Persona PersonaSeleccionado(ListView listV_Clientes) {
+        listV_Clientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                personaSeleccionada = (Cliente) parent.getItemAtPosition(position);
+                getEt_Nombre.setText(personaSeleccionada.getNombre());
+                getEt_Telefono.setText(personaSeleccionada.getTelefono());
+                getEt_Email.setText(personaSeleccionada.getEmail());
+                getEt_Ciudad.setText(personaSeleccionada.getLocalidad());
+            }
+        });
+        return personaSeleccionada;
     }
 
 

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/design_default_color_on_secondary"
+    android:background="#8CE3F2FD"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HeaderView"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:layout_width="192dp"
+        android:layout_height="70dp"
+        android:text="A cuadritos"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
 </LinearLayout>
