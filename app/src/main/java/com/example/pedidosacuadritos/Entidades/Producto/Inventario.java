@@ -1,12 +1,14 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
 
+import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Inventario {
 
-    protected LinkedList<Producto> Lista;
+    protected List<Adulto> Lista;
     private static Inventario instance;
 
 
@@ -37,28 +39,22 @@ public class Inventario {
 
     **/
 
-    public void AgregarProducto(Producto p){
-        Lista.add(p);
+    public void AgregarProducto(Adulto p){
+        BaseDatoService Basedatos = BaseDatoService.getInstance();
+        Basedatos.write(p);
+        //Lista.add(p);
 
     }
 
     // TODO: 14/06/20  Descargar productos desde la nube y actualizar la lista de productos.
 
 
-    public LinkedList<Producto> getLista() {
-        return Lista;
+    public List<Adulto> getLista() {
+        BaseDatoService Basedatos = BaseDatoService.getInstance();
+        Lista = Basedatos.listarProductos();
+         return Lista;
     }
 
-    public static ArrayList<Producto> createProductoList(int numProducto) {
-        ArrayList<Producto> contacts = new ArrayList<Producto>();
-
-        for (int i = 1; i <= numProducto; i++) {
-            contacts.add(new Producto(Integer.toString(i),"cuadrille azul " ,"flores grandes","negro liso", "lunares blancos") {
-            });
-        }
-
-        return contacts;
-    }
 
 
 

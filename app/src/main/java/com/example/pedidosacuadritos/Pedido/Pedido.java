@@ -19,15 +19,14 @@ public class Pedido {
     public Pedido(Producto producto, Cliente cliente, Vendedor vendedor) {
         this.producto = producto;
         this.cliente = cliente;
-        this.vendedor = vendedor;
+        //this.vendedor = vendedor;  En un futuro podemos tomar nota de quien registro dicho pedido
         fecha = new Date();// fecha que se genera el pedido;
     }
 
-    public Pedido(Producto producto, ModoPago modoPago, Cliente cliente, Vendedor vendedor) {
+    public Pedido(Producto producto, ModoPago modoPago, Cliente cliente) {
         this.producto = producto;
         this.modoPago = modoPago;
         this.cliente = cliente;
-        this.vendedor = vendedor;
         fecha = new Date();// fecha que se genera el pedido;
     }
 

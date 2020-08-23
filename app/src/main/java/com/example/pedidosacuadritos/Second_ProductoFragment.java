@@ -16,9 +16,11 @@ import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
 import com.example.pedidosacuadritos.Entidades.Producto.Inventario;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.Utilidades.AdapterRecyclerView;
+import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
+import java.util.UUID;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -33,7 +35,7 @@ public class Second_ProductoFragment extends Fragment {
 
     RecyclerView recyclerView;
     AdapterRecyclerView adapter;
-    LinkedList<Producto> items;
+    List<Adulto> items;
 
 
     @Override
@@ -46,14 +48,18 @@ public class Second_ProductoFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         //---Esto lo vamos a hacer luego de manera manual mediante otra activity. --- INICIO
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Azul","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Verde","Sin bolsillo ","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Rosa","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1","Liso Negro","bolsillo Verde","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto("1"," rayado Negro","bolsillo azul","rojo","amarillo"));
+
+        Adulto p = new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo");
+        Inventario.getInstance().AgregarProducto(p);
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Azul","bolsillo azul","rojo","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Verde","Sin bolsillo ","negro","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Rosa","bolsillo azul","rojo","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","blanco con lunares","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"Liso Negro","bolsillo Verde","rojo","amarillo"));
+        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString()," rayado Negro","bolsillo azul","azul","amarillo"));
+
+
 
         //---Esto lo vamos a hacer luego de manera manual mediante otra activity. -----.FIN.
 

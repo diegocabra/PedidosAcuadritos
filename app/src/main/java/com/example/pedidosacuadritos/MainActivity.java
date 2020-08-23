@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
 
 
-
         pager = findViewById(R.id.viewpager);
         mTabLayout = findViewById(R.id.tablayout);
 

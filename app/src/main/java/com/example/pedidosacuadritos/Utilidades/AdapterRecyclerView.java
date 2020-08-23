@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pedidosacuadritos.Details;
+import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.R;
 
@@ -25,10 +26,10 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
     private int globalPosition;
     //Guardamos una lista de productos disponibles
-    private List<Producto> Lproductos;
+    private List<Adulto> Lproductos;
 
 
-    public AdapterRecyclerView(List<Producto> productos) {
+    public AdapterRecyclerView(List<Adulto> productos) {
         Lproductos = productos;
     }
 
@@ -100,6 +101,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
                     Intent i = new Intent(v.getContext(), Details.class);
                     i.putExtra("title", Lproductos.get(getAdapterPosition()).getTela());
+
                     i.putExtra("descripcion", Lproductos.get(getAdapterPosition()).getBolsillo());
                     v.getContext().startActivity(i);
                     return false;

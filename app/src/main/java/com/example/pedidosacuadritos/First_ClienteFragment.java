@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,19 +33,28 @@ public class First_ClienteFragment extends Fragment {
 
     ArrayAdapter<Cliente> arrayAdapterCliente;
     private EditText getEt_Nombre, getEt_Email, getEt_Telefono, getEt_Ciudad;
-    private Button bt_Agregar, bt_Actualizar, bt_Eliminar;
+    private Button bt_Agregar, bt_Actualizar, bt_Eliminar,bt_Clean;
     private ListView listV_Clientes;
     private List<Cliente> listaClientes = new ArrayList<Cliente>();
     private Persona personaSeleccionada;
 
     public First_ClienteFragment() {
         // Required empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cliente, container, false);
+
+    }
+
+   @Override
+      public void onResume() {
+        super.onResume();
+        Toast.makeText(getActivity(), "OnResume", Toast.LENGTH_LONG).show();
+       ActualizarListView();
 
     }
 
@@ -55,18 +65,25 @@ public class First_ClienteFragment extends Fragment {
         getEt_Ciudad = getView().findViewById(R.id.et_Ciudad);
         bt_Agregar = getView().findViewById(R.id.bt_Agregar);
         bt_Actualizar = getView().findViewById(R.id.bt_Actualizar);
+        bt_Clean = getView().findViewById(R.id.bt_clean);
+        bt_Eliminar = getView().findViewById(R.id.bt_Eliminar);
 
         final ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
+
         BaseDatoService Basedatos = BaseDatoService.getInstance();
         listaClientes = Basedatos.listarDatos();
+
         arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);
         listV_Clientes.setAdapter(arrayAdapterCliente);
 
 
         personaSeleccionada = PersonaSeleccionado(listV_Clientes);
+
         bt_Actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (camposObligatorios())
+                {
                 Persona P = new Cliente();
                 P.setId(personaSeleccionada.getId());
                 P.setNombre(getEt_Nombre.getText().toString());
@@ -74,9 +91,12 @@ public class First_ClienteFragment extends Fragment {
                 P.setLocalidad(getEt_Ciudad.getText().toString());
                 P.setTelefono(getEt_Telefono.getText().toString());
                 BaseDatoService Basedatos = BaseDatoService.getInstance();
-                Basedatos.write(P);
-                Toast.makeText(getActivity(), "Cliente Actualizado", Toast.LENGTH_SHORT).show();
+
+              Basedatos.write(P);
+                Toast.makeText(getActivity(), "Cliente Actualizado", Toast.LENGTH_LONG).show();
                 limpiarEditTexts();
+                    ActualizarListView();
+                }
 
             }
         });
@@ -85,15 +105,46 @@ public class First_ClienteFragment extends Fragment {
         bt_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                camposObligatorios();//Antes de guardar , se fija que tengan los campos obligatorios validos.
-                Cliente Nuevo = new Cliente(UUID.randomUUID().toString(), getEt_Nombre.getText().toString(), getEt_Telefono.getText().toString(), getEt_Ciudad.getText().toString(), getEt_Email.getText().toString());
+                if (camposObligatorios()) //Antes de guardar , se fija que tengan los campos obligatorios validos.
+                {Cliente Nuevo = new Cliente(UUID.randomUUID().toString(), getEt_Nombre.getText().toString(), getEt_Telefono.getText().toString(), getEt_Ciudad.getText().toString(), getEt_Email.getText().toString());
                 BaseDatoService Basedatos = BaseDatoService.getInstance();
                 Basedatos.write(Nuevo);
-                Toast.makeText(getActivity(), "Cliente Agregado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Cliente Agregado", Toast.LENGTH_LONG).show();
+                limpiarEditTexts();
+                ActualizarListView();
+            } }
+        });
+
+
+        bt_Eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (camposObligatorios()) //Antes de guardar , se fija que tengan los campos obligatorios validos.
+                {
+
+                    BaseDatoService Basedatos = BaseDatoService.getInstance();
+                    Basedatos.delete(personaSeleccionada);
+                    Toast.makeText(getActivity(), "Cliente Eliminado", Toast.LENGTH_LONG).show();
+                    limpiarEditTexts();
+                    ActualizarListView();
+
+                }
+            }
+        });
+
+        bt_Clean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 limpiarEditTexts();
             }
         });
 
+    }
+
+    private void ActualizarListView() {
+        //Actualizo el Array Adapter de clientes
+        arrayAdapterCliente.clear();
+        arrayAdapterCliente.notifyDataSetChanged();
     }
 
     private Persona PersonaSeleccionado(ListView listV_Clientes) {
@@ -111,13 +162,16 @@ public class First_ClienteFragment extends Fragment {
     }
 
 
-    // REVISAR ESTA VALIDACION CHOTA ; no controla ambas.
-    private void camposObligatorios() {
-        if (getEt_Nombre.getText().toString().equals(""))
+    private boolean camposObligatorios() {
+
+        if ((getEt_Nombre.getText().toString()).isEmpty())
             getEt_Nombre.setError("Campo Requerido");
-        if (getEt_Telefono.getText().toString().equals(""))
+        if ((getEt_Telefono.getText().toString()).isEmpty())
             getEt_Telefono.setError("Campo Requerido");
+
+        return  !((getEt_Nombre.getText().toString()).isEmpty()) & !((getEt_Telefono.getText().toString()).isEmpty()) ;
     }
+
 
 
     private void limpiarEditTexts() {

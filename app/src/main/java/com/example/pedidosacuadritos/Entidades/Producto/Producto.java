@@ -1,8 +1,9 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
+import java.io.Serializable;
 import java.util.ArrayList;
-public abstract class Producto {
-    protected double precio;
-    protected double cantTela;
+public abstract class Producto implements Serializable {
+    //protected double precio;
+    //protected double cantTela;
     protected String tela;
     protected String bolsillo;
     protected String bies1;
@@ -20,6 +21,39 @@ public abstract class Producto {
 
     protected int cantCierres;
     //protected int costoConfeccion
+
+    public String getId(){
+        return id;
+    }
+    public  Producto(){
+
+    }
+    public Producto(String id,String tela, String bolsillo, String bies1, String bies2) {
+        this.id = id;
+        this.tela = tela;
+        this.bolsillo = bolsillo;
+        this.bies1 = bies1;
+        this.bies2 = bies2;
+
+    }
+
+  /** public double getPrecio() {
+
+        return precio;
+    }
+
+    public double getCantTela() {
+
+        return cantTela;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public void setCantTela(int cantTela) {
+        this.cantTela = cantTela;
+    }*/
 
     public String getTela() {
         return tela;
@@ -52,33 +86,6 @@ public abstract class Producto {
     public void setBies2(String bies2) {
         this.bies2 = bies2;
     }
-
-    public Producto(String id,String tela, String bolsillo, String bies1, String bies2) {
-        this.id = id;
-        this.tela = tela;
-        this.bolsillo = bolsillo;
-        this.bies1 = bies1;
-        this.bies2 = bies2;
-    }
-
-    public double getPrecio() {
-
-        return precio;
-    }
-
-    public double getCantTela() {
-
-        return cantTela;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public void setCantTela(int cantTela) {
-        this.cantTela = cantTela;
-    }
-
 
 
 
