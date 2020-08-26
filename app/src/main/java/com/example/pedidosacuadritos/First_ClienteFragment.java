@@ -3,9 +3,11 @@ package com.example.pedidosacuadritos;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.view.Gravity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +26,9 @@ import java.util.List;
 
 import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 import com.example.pedidosacuadritos.Entidades.Persona.Persona;
+import com.example.pedidosacuadritos.Utilidades.PageViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class First_ClienteFragment extends Fragment {
 
 
@@ -37,13 +38,15 @@ public class First_ClienteFragment extends Fragment {
     private ListView listV_Clientes;
     private List<Cliente> listaClientes = new ArrayList<Cliente>();
     private Persona personaSeleccionada;
-
+    private PageViewModel pageViewModel;
     public First_ClienteFragment() {
         // Required empty public constructor
 
     }
 
-    @Override
+
+
+     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cliente, container, false);
@@ -53,7 +56,6 @@ public class First_ClienteFragment extends Fragment {
    @Override
       public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "OnResume", Toast.LENGTH_LONG).show();
        ActualizarListView();
 
     }
@@ -71,13 +73,16 @@ public class First_ClienteFragment extends Fragment {
         final ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
 
         BaseDatoService Basedatos = BaseDatoService.getInstance();
-        listaClientes = Basedatos.listarDatos();
+        listaClientes = Basedatos.listarDatos(); // Descargo de la nube los clientes ya cargados para luego mostrar en el listView
 
-        arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);
+        arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);  // Armo un Array de Clientes para armar el ListView
         listV_Clientes.setAdapter(arrayAdapterCliente);
 
 
         personaSeleccionada = PersonaSeleccionado(listV_Clientes);
+
+        pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class); //Inicializo el viewModel
+
 
         bt_Actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +146,7 @@ public class First_ClienteFragment extends Fragment {
 
     }
 
-    private void ActualizarListView() {
+    private void ActualizarListView() { // TODO: 26/08/20 Revisar el listView, en ciertas ocasiones no muestra , creo que se debe al Onresume o algun ciclo parecido
         //Actualizo el Array Adapter de clientes
         arrayAdapterCliente.clear();
         arrayAdapterCliente.notifyDataSetChanged();
@@ -156,6 +161,7 @@ public class First_ClienteFragment extends Fragment {
                 getEt_Telefono.setText(personaSeleccionada.getTelefono());
                 getEt_Email.setText(personaSeleccionada.getEmail());
                 getEt_Ciudad.setText(personaSeleccionada.getLocalidad());
+                pageViewModel.setCliente((Cliente) personaSeleccionada);    // "LE paso" al viewModel el cliente que quiero que conserve para el otro fragment
             }
         });
         return personaSeleccionada;

@@ -26,10 +26,10 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
     private int globalPosition;
     //Guardamos una lista de productos disponibles
-    private List<Adulto> Lproductos;
+    private List<Producto> Lproductos;
 
 
-    public AdapterRecyclerView(List<Adulto> productos) {
+    public AdapterRecyclerView(List<Producto> productos) {
         Lproductos = productos;
     }
 

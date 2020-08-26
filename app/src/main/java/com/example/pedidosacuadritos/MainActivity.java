@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
-        //revisar esta mierda del toolbar
+        // TODO: 23/08/20  revisar esta mierda del toolbar
         //setSupportActionBar(toolbar);
 
 

@@ -1,7 +1,7 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
 import java.io.Serializable;
 import java.util.ArrayList;
-public abstract class Producto implements Serializable {
+public class Producto implements Serializable {
     //protected double precio;
     //protected double cantTela;
     protected String tela;

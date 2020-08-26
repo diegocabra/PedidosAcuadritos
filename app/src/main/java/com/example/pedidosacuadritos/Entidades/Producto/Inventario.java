@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Inventario {
 
-    protected List<Adulto> Lista;
+    protected List<Producto> Lista;
     private static Inventario instance;
 
 
@@ -39,17 +39,15 @@ public class Inventario {
 
     **/
 
-    public void AgregarProducto(Adulto p){
+    public void AgregarProducto(Producto p){
         BaseDatoService Basedatos = BaseDatoService.getInstance();
         Basedatos.write(p);
-        //Lista.add(p);
 
     }
 
-    // TODO: 14/06/20  Descargar productos desde la nube y actualizar la lista de productos.
 
 
-    public List<Adulto> getLista() {
+    public List<Producto> getLista() {
         BaseDatoService Basedatos = BaseDatoService.getInstance();
         Lista = Basedatos.listarProductos();
          return Lista;

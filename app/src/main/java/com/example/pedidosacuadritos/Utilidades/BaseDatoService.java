@@ -21,8 +21,7 @@ public class BaseDatoService {
 
 
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference myRef;
+
     private static BaseDatoService instance;
 
 
@@ -46,11 +45,12 @@ public class BaseDatoService {
 
     }
 
-    public void write (Adulto producto)
+    public void write (Producto producto)
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Productos");
         myRef.child(producto.getId()).setValue(producto);
+        // TODO: 23/08/20 Agregar genericidad para poder agregar todos los productos pero por grupos , ejemplo los Adultos en una hoja , los niños en otra hoja.  
 
 
     }
@@ -82,9 +82,11 @@ public class BaseDatoService {
         return ListaClientes;
     }
 
-    public List<Adulto> listarProductos(){
-        final List<Adulto> ListaProductos = new ArrayList<Adulto>();
-        Log.e("listar", "estoy aca");
+
+    // TODO: 26/08/20  ¿ Acaso este listar datos, no se podra hacer mas generico ? Alta paja, los dos iguales
+
+    public List<Producto> listarProductos(){
+        final List<Producto> ListaProductos = new ArrayList<Producto>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Productos");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -92,8 +94,7 @@ public class BaseDatoService {
             public void onDataChange (@NonNull DataSnapshot dataSnapshot) {
                 ListaProductos.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()){
-                    Adulto prod = objSnapshot.getValue(Adulto.class);
-                    Log.e("ID PERSONA ","HOLA");
+                    Producto prod = objSnapshot.getValue(Producto.class);
                     ListaProductos.add(prod);}
 
             }

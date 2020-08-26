@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
 import com.example.pedidosacuadritos.Entidades.Producto.Inventario;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.Entidades.Producto.jardin;
 import com.example.pedidosacuadritos.Utilidades.AdapterRecyclerView;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
@@ -35,7 +36,7 @@ public class Second_ProductoFragment extends Fragment {
 
     RecyclerView recyclerView;
     AdapterRecyclerView adapter;
-    List<Adulto> items;
+    List<Producto> items;
 
 
     @Override
@@ -47,14 +48,16 @@ public class Second_ProductoFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        //---Esto lo vamos a hacer luego de manera manual mediante otra activity. --- INICIO
+        // TODO: 26/08/20 ---Esto lo vamos a hacer luego de manera manual mediante otra activity. --- INICIO
+/**
+ *
 
         Adulto p = new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo");
         Inventario.getInstance().AgregarProducto(p);
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Azul","bolsillo azul","rojo","amarillo"));
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Verde","Sin bolsillo ","negro","amarillo"));
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Rosa","bolsillo azul","rojo","amarillo"));
+        Inventario.getInstance().AgregarProducto(new jardin(UUID.randomUUID().toString(),"cuadrille Rosa","bolsillo azul","rojo","amarillo"));
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","blanco con lunares","amarillo"));
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"Liso Negro","bolsillo Verde","rojo","amarillo"));
         Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString()," rayado Negro","bolsillo azul","azul","amarillo"));
@@ -63,7 +66,7 @@ public class Second_ProductoFragment extends Fragment {
 
         //---Esto lo vamos a hacer luego de manera manual mediante otra activity. -----.FIN.
 
-
+ */
         // Lookup the recyclerview in activity layout
         recyclerView = getView().findViewById(R.id.RecyclerViewProductos);
 

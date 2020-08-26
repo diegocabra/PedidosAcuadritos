@@ -41,7 +41,7 @@
             android:id="@+id/thirditem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pago" />
+            android:text="Cerrar Pedido" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -50,8 +50,10 @@
         android:layout_width="409dp"
         android:layout_height="625dp"
         android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tablayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tablayout"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
