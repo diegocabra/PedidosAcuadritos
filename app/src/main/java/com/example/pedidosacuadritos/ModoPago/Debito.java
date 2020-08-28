@@ -10,10 +10,10 @@ public class Debito extends ModoPago {
 
     }
 
-    /*@Override
+    @Override
     public double obtenerGanancia() {
         return producto.getPrecio()*descuentoDebito;
-    }*/
+    }
 
 }
 

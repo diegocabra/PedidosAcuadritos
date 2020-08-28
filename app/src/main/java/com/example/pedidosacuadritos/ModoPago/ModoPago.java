@@ -10,7 +10,7 @@ public abstract class ModoPago {
     public ModoPago(Producto producto){
         this.producto = producto;
     }
-    //public abstract double obtenerGanancia();*
+    public abstract double obtenerGanancia();
 
 
     public double getDescuentoCredito() {

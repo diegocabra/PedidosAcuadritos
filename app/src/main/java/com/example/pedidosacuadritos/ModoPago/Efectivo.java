@@ -10,8 +10,8 @@ public class Efectivo extends ModoPago {
         super(producto);
     }
 
-    //@Override
-   // public double obtenerGanancia() {
-   //     return producto.getPrecio();
- //   }
+    @Override
+    public double obtenerGanancia() {
+      return producto.getPrecio();
+   }
 }

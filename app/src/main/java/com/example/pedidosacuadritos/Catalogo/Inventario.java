@@ -1,12 +1,15 @@
-package com.example.pedidosacuadritos.Entidades.Producto;
+package com.example.pedidosacuadritos.Catalogo;
 
+import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Inventario {
+    /*
+    La idea de esta clase es la de poder agregar o eliminar productos al Catalogo de productos
+    */
 
     protected List<Producto> Lista;
     private static Inventario instance;

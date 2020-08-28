@@ -10,10 +10,10 @@ public class Credito extends ModoPago {
         super(producto);
     }
 
- /*   @Override
+   @Override
     public double obtenerGanancia() {
 
         return producto.getPrecio() * descuentoCredito;
-    }*/
+    }
 
 }

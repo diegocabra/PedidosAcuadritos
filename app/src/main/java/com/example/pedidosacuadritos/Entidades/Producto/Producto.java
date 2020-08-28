@@ -2,8 +2,8 @@ package com.example.pedidosacuadritos.Entidades.Producto;
 import java.io.Serializable;
 import java.util.ArrayList;
 public class Producto implements Serializable {
-    //protected double precio;
-    //protected double cantTela;
+    protected double precio;
+    protected double cantTela;
     protected String tela;
     protected String bolsillo;
     protected String bies1;
@@ -20,7 +20,7 @@ public class Producto implements Serializable {
     }
 
     protected int cantCierres;
-    //protected int costoConfeccion
+    protected int costoConfeccion;
 
     public String getId(){
         return id;
@@ -37,7 +37,7 @@ public class Producto implements Serializable {
 
     }
 
-  /** public double getPrecio() {
+   public double getPrecio() {
 
         return precio;
     }
@@ -53,7 +53,7 @@ public class Producto implements Serializable {
 
     public void setCantTela(int cantTela) {
         this.cantTela = cantTela;
-    }*/
+    }
 
     public String getTela() {
         return tela;

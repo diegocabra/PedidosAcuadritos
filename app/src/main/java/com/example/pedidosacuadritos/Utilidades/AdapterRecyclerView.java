@@ -13,8 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pedidosacuadritos.Details;
-import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
+import com.example.pedidosacuadritos.detalle_Producto;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.R;
 
@@ -94,20 +93,19 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             textDescription = itemView.findViewById(R.id.tv_descripcion);
             img = itemView.findViewById(R.id.imv_modelo);
             //Evento de cuando mantengo presionado el item por un tiempo mas prolongado .
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
 
 
-                    Intent i = new Intent(v.getContext(), Details.class);
-                    i.putExtra("title", Lproductos.get(getAdapterPosition()).getTela());
+                    Intent i = new Intent(v.getContext(), detalle_Producto.class);
+                    i.putExtra("Titulo", Lproductos.get(getAdapterPosition()).getTela());
 
                     i.putExtra("descripcion", Lproductos.get(getAdapterPosition()).getBolsillo());
                     v.getContext().startActivity(i);
                     return false;
                 }
             });
-
         }
 
     }

@@ -12,15 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
-import com.example.pedidosacuadritos.Entidades.Producto.Inventario;
+import com.example.pedidosacuadritos.Catalogo.Inventario;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
-import com.example.pedidosacuadritos.Entidades.Producto.jardin;
 import com.example.pedidosacuadritos.Utilidades.AdapterRecyclerView;
-import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
-import java.util.UUID;
-import java.util.ArrayList;
 import java.util.List;
 
 

@@ -28,38 +28,6 @@
                 android:layout_height="133dp"
                 android:src="@drawable/azulbolsillorayado" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_TituloTalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Talle" />
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/Talles" />
-
-                <TextView
-                    android:id="@+id/tv_TituloCantidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cantidad" />
-
-                <EditText
-                    android:id="@+id/eT_Cantidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
         </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline

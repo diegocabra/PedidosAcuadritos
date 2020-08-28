@@ -35,7 +35,7 @@
             android:id="@+id/secondItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Producto" />
+            android:text="Catalogo" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/thirditem"
