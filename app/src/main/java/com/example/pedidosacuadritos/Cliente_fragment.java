@@ -3,7 +3,6 @@ package com.example.pedidosacuadritos;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
 import java.util.UUID;
@@ -29,7 +29,7 @@ import com.example.pedidosacuadritos.Entidades.Persona.Persona;
 import com.example.pedidosacuadritos.Utilidades.PageViewModel;
 
 
-public class First_ClienteFragment extends Fragment {
+public class Cliente_fragment extends Fragment {
 
 
     ArrayAdapter<Cliente> arrayAdapterCliente;
@@ -39,7 +39,8 @@ public class First_ClienteFragment extends Fragment {
     private List<Cliente> listaClientes = new ArrayList<Cliente>();
     private Persona personaSeleccionada;
     private PageViewModel pageViewModel;
-    public First_ClienteFragment() {
+    private Pedido pedidoTemporal;
+    public Cliente_fragment() {
         // Required empty public constructor
 
     }
@@ -60,6 +61,7 @@ public class First_ClienteFragment extends Fragment {
 
     }
 
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         getEt_Nombre = getView().findViewById(R.id.et_Nombre);
         getEt_Telefono = getView().findViewById(R.id.et_Telefono);
@@ -70,10 +72,10 @@ public class First_ClienteFragment extends Fragment {
         bt_Clean = getView().findViewById(R.id.bt_clean);
         bt_Eliminar = getView().findViewById(R.id.bt_Eliminar);
 
-        final ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
+       ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
 
         BaseDatoService Basedatos = BaseDatoService.getInstance();
-        listaClientes = Basedatos.listarDatos(); // Descargo de la nube los clientes ya cargados para luego mostrar en el listView
+        listaClientes = Basedatos.listarClientes(); // Descargo de la nube los clientes ya cargados para luego mostrar en el listView
 
         arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);  // Armo un Array de Clientes para armar el ListView
         listV_Clientes.setAdapter(arrayAdapterCliente);
@@ -161,7 +163,8 @@ public class First_ClienteFragment extends Fragment {
                 getEt_Telefono.setText(personaSeleccionada.getTelefono());
                 getEt_Email.setText(personaSeleccionada.getEmail());
                 getEt_Ciudad.setText(personaSeleccionada.getLocalidad());
-                pageViewModel.setCliente((Cliente) personaSeleccionada);    // "LE paso" al viewModel el cliente que quiero que conserve para el otro fragment
+                pedidoTemporal = new Pedido((Cliente) personaSeleccionada); //armo un pedido temporal y le asigno el cliente nuevo,
+                pageViewModel.setPedido(pedidoTemporal);    // "LE paso" al viewModel el pedido que quiero que conserve para el otro fragment
             }
         });
         return personaSeleccionada;

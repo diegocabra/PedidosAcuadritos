@@ -1,6 +1,8 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
+
 public class Producto implements Serializable {
     protected double precio;
     protected double cantTela;
@@ -28,8 +30,8 @@ public class Producto implements Serializable {
     public  Producto(){
 
     }
-    public Producto(String id,String tela, String bolsillo, String bies1, String bies2) {
-        this.id = id;
+    public Producto(String tela, String bolsillo, String bies1, String bies2) {
+        id= UUID.randomUUID().toString();
         this.tela = tela;
         this.bolsillo = bolsillo;
         this.bies1 = bies1;

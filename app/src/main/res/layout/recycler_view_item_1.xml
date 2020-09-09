@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:padding="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+  <ImageView
+      android:id="@+id/imv_modelo"
+      android:layout_width="112dp"
+      android:layout_height="99dp"
+      tools:src="@drawable/common_google_signin_btn_icon_dark_focused" />
+
+  <LinearLayout
+      android:layout_width="309dp"
+      android:layout_height="110dp"
+      android:layout_gravity="center"
+      android:orientation="vertical"
+      android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="@tools:sample/lorem[3]" />
+
+    <TextView
+        android:id="@+id/tv_descripcion"
+        android:layout_width="243dp"
+        android:layout_height="52dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        tools:text="@tools:sample/lorem[4]" />
+  </LinearLayout>
+</LinearLayout>

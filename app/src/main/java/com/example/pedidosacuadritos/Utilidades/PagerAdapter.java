@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.pedidosacuadritos.First_ClienteFragment;
-import com.example.pedidosacuadritos.Second_ProductoFragment;
-import com.example.pedidosacuadritos.Third;
+import com.example.pedidosacuadritos.Cliente_fragment;
+import com.example.pedidosacuadritos.Producto_fragment;
+import com.example.pedidosacuadritos.CerrarPedido_fragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 private int tabsNumber;
@@ -21,11 +21,11 @@ private int tabsNumber;
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new First_ClienteFragment();
+                return new Cliente_fragment();
             case 1:
-                return new Second_ProductoFragment();
+                return new Producto_fragment();
             case 2:
-                return new Third();
+                return new CerrarPedido_fragment();
             default:
                 return null;
         }

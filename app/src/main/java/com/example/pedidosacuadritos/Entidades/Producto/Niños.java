@@ -1,10 +1,12 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
 
-public abstract class Niños extends Producto {
+import java.io.Serializable;
+
+public abstract class Niños extends Producto implements Serializable {
 
 
-    public Niños(String id,String tela, String bolsillo, String bies1, String bies2) {
-        super(id,tela, bolsillo, bies1, bies2);
+    public Niños(String tela, String bolsillo, String bies1, String bies2) {
+        super(tela, bolsillo, bies1, bies2);
         cantCierres = 0;
 
     }

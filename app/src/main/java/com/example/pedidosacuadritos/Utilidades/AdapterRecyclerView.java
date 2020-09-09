@@ -11,10 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pedidosacuadritos.detalle_Producto;
+import com.example.pedidosacuadritos.Catalogo.detalle_Producto;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.Pedido.Pedido;
+import com.example.pedidosacuadritos.Producto_fragment;
 import com.example.pedidosacuadritos.R;
 
 import java.util.List;
@@ -22,11 +26,9 @@ import java.util.List;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder> {
 
-
     private int globalPosition;
     //Guardamos una lista de productos disponibles
     private List<Producto> Lproductos;
-
 
     public AdapterRecyclerView(List<Producto> productos) {
         Lproductos = productos;
@@ -65,10 +67,12 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         else
             viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT); // Si el item no es seleccionado se queda en transparente
 
+
     }
 
     @Override
     public int getItemCount() {
+
         return Lproductos.size();
     }
 
@@ -76,6 +80,9 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
         TextView textTitle, textDescription;
         ImageView img;
+
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,7 +93,6 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
                     //globalPosition tengo la posicion en donde esta parado o seleccionado el adapter, cuando selecciono un ITEM
                     globalPosition = getAdapterPosition();
                     notifyDataSetChanged();
-
                 }
             });
             textTitle = itemView.findViewById(R.id.tv_titulo);
@@ -99,10 +105,10 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
 
                     Intent i = new Intent(v.getContext(), detalle_Producto.class);
-                    i.putExtra("Titulo", Lproductos.get(getAdapterPosition()).getTela());
+                    i.putExtra("Producto",Lproductos.get(getAdapterPosition()));
 
-                    i.putExtra("descripcion", Lproductos.get(getAdapterPosition()).getBolsillo());
-                    v.getContext().startActivity(i);
+
+                     v.getContext().startActivity(i);
                     return false;
                 }
             });

@@ -1,6 +1,10 @@
 package com.example.pedidosacuadritos.Pedido;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.UUID;
 
 import com.example.pedidosacuadritos.Entidades.Persona.Vendedor;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
@@ -9,25 +13,38 @@ import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 
 public class Pedido {
 
-    protected Producto producto;
+    protected String id;
+    protected List<Producto> productos;
     protected ModoPago modoPago;
     protected Cliente cliente;
     protected Vendedor vendedor;
     protected int ganancia;
     protected Date fecha;
 
-    public Pedido(Producto producto, Cliente cliente, Vendedor vendedor) {
-        this.producto = producto;
+
+    public Pedido(Cliente cliente) {
+        id= UUID.randomUUID().toString();
         this.cliente = cliente;
+        productos = new LinkedList<Producto>();
         //this.vendedor = vendedor;  En un futuro podemos tomar nota de quien registro dicho pedido
         fecha = new Date();// fecha que se genera el pedido;
     }
 
     public Pedido(Producto producto, ModoPago modoPago, Cliente cliente) {
-        this.producto = producto;
+        id= UUID.randomUUID().toString();
+
         this.modoPago = modoPago;
         this.cliente = cliente;
         fecha = new Date();// fecha que se genera el pedido;
+    }
+
+    public Pedido (){
+
+    }
+
+
+    public String getId(){
+        return id;
     }
 
     public ModoPago getModoPago() {
@@ -40,14 +57,21 @@ public class Pedido {
         this.modoPago = modoPago;
     }
 
-    public Producto getProducto() {
+    public ListIterator<Producto> getProductos() {
 
-        return producto;
+        return productos.listIterator();
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setCliente(Cliente c){
+        cliente = c;
+    }
 
+    public void addProducto(Producto producto) {
+        productos.add(producto);
+    }
+
+    public Cliente getCliente(){
+        return cliente;
     }
 
 

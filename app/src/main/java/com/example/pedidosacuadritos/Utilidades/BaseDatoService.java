@@ -8,6 +8,7 @@ import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 import com.example.pedidosacuadritos.Entidades.Persona.Persona;
 import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +53,14 @@ public class BaseDatoService {
         myRef.child(producto.getId()).setValue(producto);
         // TODO: 23/08/20 Agregar genericidad para poder agregar todos los productos pero por grupos , ejemplo los Adultos en una hoja , los niños en otra hoja.  
 
+    }
+
+    public void write (Pedido pedido)
+    {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Pedidos");
+        myRef.child(pedido.getId()).setValue(pedido);
+
 
     }
     public void delete(Persona persona) {
@@ -60,7 +69,7 @@ public class BaseDatoService {
         myRef.child("Cliente").child(persona.getId()).removeValue();
     }
 
-    public List<Cliente> listarDatos(){
+    public List<Cliente> listarClientes(){
         final List<Cliente> ListaClientes = new ArrayList<Cliente>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -105,6 +114,28 @@ public class BaseDatoService {
             }
         });
         return ListaProductos;
+    }
+
+    public List<Pedido> listarPedidos(){
+        final List<Pedido> listaPedidos = new ArrayList<Pedido>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Pedidos");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange (@NonNull DataSnapshot dataSnapshot) {
+                listaPedidos.clear();
+                for (DataSnapshot objSnapshot : dataSnapshot.getChildren()){
+                    Pedido pedido = objSnapshot.getValue(Pedido.class);
+                    listaPedidos.add(pedido);}
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                int i;
+            }
+        });
+        return listaPedidos;
     }
 
 

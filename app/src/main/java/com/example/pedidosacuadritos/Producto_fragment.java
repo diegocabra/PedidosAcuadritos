@@ -1,6 +1,7 @@
 package com.example.pedidosacuadritos;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.example.pedidosacuadritos.Catalogo.Inventario;
+import com.example.pedidosacuadritos.Catalogo.Catalogo;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.Utilidades.AdapterRecyclerView;
 
@@ -22,13 +23,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Second_ProductoFragment extends Fragment {
+public class Producto_fragment extends Fragment {
 
 
-    public Second_ProductoFragment() {
+    public Producto_fragment() {
         // Required empty public constructor
     }
 
+    Catalogo catalogoProductos;
     RecyclerView recyclerView;
     AdapterRecyclerView adapter;
     List<Producto> items;
@@ -44,29 +46,28 @@ public class Second_ProductoFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         // TODO: 26/08/20 ---Esto lo vamos a hacer luego de manera manual mediante otra activity. --- INICIO
+
+
 /**
- *
-
         Adulto p = new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo");
-        Inventario.getInstance().AgregarProducto(p);
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Azul","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Verde","Sin bolsillo ","negro","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new jardin(UUID.randomUUID().toString(),"cuadrille Rosa","bolsillo azul","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","blanco con lunares","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString(),"Liso Negro","bolsillo Verde","rojo","amarillo"));
-        Inventario.getInstance().AgregarProducto(new Adulto(UUID.randomUUID().toString()," rayado Negro","bolsillo azul","azul","amarillo"));
-
+        catalogoProductos.AgregarProducto(p);
+        catalogoProductos.AgregarProducto(new Adulto("cuadrille Azul","bolsillo azul","rojo","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("cuadrille Verde","Sin bolsillo ","negro","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("cuadrille Negro","bolsillo azul","rojo","amarillo"));
+        catalogoProductos.AgregarProducto(new jardin("cuadrille Rosa","bolsillo azul","rojo","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("cuadrille Negro","bolsillo azul","blanco con lunares","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("Liso Negro","bolsillo Verde","rojo","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto(" rayado Negro","bolsillo azul","azul","amarillo"));
+*/
 
 
         //---Esto lo vamos a hacer luego de manera manual mediante otra activity. -----.FIN.
 
- */
+
         // Lookup the recyclerview in activity layout
         recyclerView = getView().findViewById(R.id.RecyclerViewProductos);
-
-        Inventario InventarioProductos = Inventario.getInstance();
-        items = InventarioProductos.getLista();
+        catalogoProductos = new Catalogo();
+        items = catalogoProductos.getCatalogoProductos();
         // Create adapter passing in the sample user data
         adapter = new AdapterRecyclerView(items);
         // Attach the adapter to the recyclerview to populate items
@@ -78,5 +79,12 @@ public class Second_ProductoFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
 
+
+
+
     }
+
+
+
+
 }

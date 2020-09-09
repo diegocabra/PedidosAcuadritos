@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".detalle_Producto">
+    tools:context=".Catalogo.detalle_Producto">
 
     <ImageView
         android:id="@+id/imv_principal"
@@ -38,6 +38,14 @@
         android:textSize="24sp"
         android:textStyle="italic" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#00614E4E"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,26 +55,44 @@
             android:id="@+id/tv_TituloTalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Talle" />
+            android:text="Talle"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/Talles" />
+            android:entries="@array/Talles"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/tv_TituloCantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cantidad" />
+            android:text="Cantidad"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/eT_Cantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FAB_agregarProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#7CA74C" />
+
 </LinearLayout>
