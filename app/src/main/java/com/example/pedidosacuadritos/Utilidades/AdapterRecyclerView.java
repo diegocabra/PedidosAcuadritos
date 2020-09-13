@@ -81,6 +81,9 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         TextView textTitle, textDescription;
         ImageView img;
 
+        public Producto getSelected(){
+            return Lproductos.get(getAdapterPosition());
+        }
 
 
 
@@ -105,8 +108,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
 
 
                     Intent i = new Intent(v.getContext(), detalle_Producto.class);
-                    i.putExtra("Producto",Lproductos.get(getAdapterPosition()));
-
+                    i.putExtra("Producto",getSelected());
 
                      v.getContext().startActivity(i);
                     return false;

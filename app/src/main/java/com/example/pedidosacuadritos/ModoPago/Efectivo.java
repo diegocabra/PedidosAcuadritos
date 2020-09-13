@@ -3,15 +3,23 @@ package com.example.pedidosacuadritos.ModoPago;
 
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 
+import java.util.List;
+
 public class Efectivo extends ModoPago {
 
-    public Efectivo(Producto producto) {
+    public Efectivo(List<Producto> productos) {
 
-        super(producto);
+        super(productos);
     }
 
     @Override
-    public double obtenerGanancia() {
-      return producto.getPrecio();
+    public double getPrecioFinal() {
+        double precioTotal=0;
+        if (listproductos.size()>0)
+            for (Producto p :listproductos)  {
+                precioTotal+=p.getPrecio();
+            }
+
+        return precioTotal;
    }
 }

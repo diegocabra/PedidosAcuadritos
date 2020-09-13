@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 
 
 import com.example.pedidosacuadritos.Catalogo.Catalogo;
+import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.Entidades.Producto.jardin;
 import com.example.pedidosacuadritos.Utilidades.AdapterRecyclerView;
 
 import java.util.List;
@@ -44,29 +46,28 @@ public class Producto_fragment extends Fragment {
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
+        catalogoProductos = new Catalogo();
+        /**
         // TODO: 26/08/20 ---Esto lo vamos a hacer luego de manera manual mediante otra activity. --- INICIO
 
+        Adulto p = new Adulto("cuadrille Negro","bolsillo azul","rojo","amarillo");
+       catalogoProductos.AgregarProducto(p);
+        catalogoProductos.AgregarProducto(new Adulto("Ambo Mujer Azul","Bolsillo Rayado","Blanco","Amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("Cuadrille Verde","Sin bolsillo ","Negro","Amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto("Cuadrille Negro","Bolsillo Lunares ","Negro","Negro"));
+        catalogoProductos.AgregarProducto(new jardin("Cuadrille Rosa","Bolsillo Flores Chicas","Coral","Rosado"));
+        catalogoProductos.AgregarProducto(new Adulto("Ambo Negro","Bolsillo Liso","Blanco con lunares","Blanco"));
+        catalogoProductos.AgregarProducto(new Adulto("Liso Negro","Bolsillo Verde","rojo","amarillo"));
+        catalogoProductos.AgregarProducto(new Adulto(" Rayado Negro","Bolsillo Azul","Lunares","Azul"));
 
-/**
-        Adulto p = new Adulto(UUID.randomUUID().toString(),"cuadrille Negro","bolsillo azul","rojo","amarillo");
-        catalogoProductos.AgregarProducto(p);
-        catalogoProductos.AgregarProducto(new Adulto("cuadrille Azul","bolsillo azul","rojo","amarillo"));
-        catalogoProductos.AgregarProducto(new Adulto("cuadrille Verde","Sin bolsillo ","negro","amarillo"));
-        catalogoProductos.AgregarProducto(new Adulto("cuadrille Negro","bolsillo azul","rojo","amarillo"));
-        catalogoProductos.AgregarProducto(new jardin("cuadrille Rosa","bolsillo azul","rojo","amarillo"));
-        catalogoProductos.AgregarProducto(new Adulto("cuadrille Negro","bolsillo azul","blanco con lunares","amarillo"));
-        catalogoProductos.AgregarProducto(new Adulto("Liso Negro","bolsillo Verde","rojo","amarillo"));
-        catalogoProductos.AgregarProducto(new Adulto(" rayado Negro","bolsillo azul","azul","amarillo"));
 */
-
 
         //---Esto lo vamos a hacer luego de manera manual mediante otra activity. -----.FIN.
 
 
         // Lookup the recyclerview in activity layout
         recyclerView = getView().findViewById(R.id.RecyclerViewProductos);
-        catalogoProductos = new Catalogo();
+
         items = catalogoProductos.getCatalogoProductos();
         // Create adapter passing in the sample user data
         adapter = new AdapterRecyclerView(items);
@@ -77,8 +78,6 @@ public class Producto_fragment extends Fragment {
 
         //agrega una linea entre elementos del Recycler view
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
-
 
 
 

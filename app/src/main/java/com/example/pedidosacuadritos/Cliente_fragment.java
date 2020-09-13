@@ -40,6 +40,7 @@ public class Cliente_fragment extends Fragment {
     private Persona personaSeleccionada;
     private PageViewModel pageViewModel;
     private Pedido pedidoTemporal;
+
     public Cliente_fragment() {
         // Required empty public constructor
 
@@ -80,11 +81,8 @@ public class Cliente_fragment extends Fragment {
         arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);  // Armo un Array de Clientes para armar el ListView
         listV_Clientes.setAdapter(arrayAdapterCliente);
 
-
-        personaSeleccionada = PersonaSeleccionado(listV_Clientes);
-
         pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class); //Inicializo el viewModel
-
+        personaSeleccionada = PersonaSeleccionado(listV_Clientes);
 
         bt_Actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +97,7 @@ public class Cliente_fragment extends Fragment {
                 P.setTelefono(getEt_Telefono.getText().toString());
                 BaseDatoService Basedatos = BaseDatoService.getInstance();
 
-              Basedatos.write(P);
+                Basedatos.write(P);
                 Toast.makeText(getActivity(), "Cliente Actualizado", Toast.LENGTH_LONG).show();
                 limpiarEditTexts();
                     ActualizarListView();
@@ -163,7 +161,8 @@ public class Cliente_fragment extends Fragment {
                 getEt_Telefono.setText(personaSeleccionada.getTelefono());
                 getEt_Email.setText(personaSeleccionada.getEmail());
                 getEt_Ciudad.setText(personaSeleccionada.getLocalidad());
-                pedidoTemporal = new Pedido((Cliente) personaSeleccionada); //armo un pedido temporal y le asigno el cliente nuevo,
+                Pedido pedidoTemporal = Pedido.getInstance();
+                pedidoTemporal.setCliente((Cliente) personaSeleccionada); //armo un pedido temporal y le asigno el cliente nuevo,
                 pageViewModel.setPedido(pedidoTemporal);    // "LE paso" al viewModel el pedido que quiero que conserve para el otro fragment
             }
         });
@@ -180,7 +179,6 @@ public class Cliente_fragment extends Fragment {
 
         return  !((getEt_Nombre.getText().toString()).isEmpty()) & !((getEt_Telefono.getText().toString()).isEmpty()) ;
     }
-
 
 
     private void limpiarEditTexts() {

@@ -18,21 +18,12 @@
             android:text="Cliente :"
             android:textSize="30sp" />
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/lv_productos"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
-            android:orientation="horizontal">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:layout_height="191dp"
+            android:choiceMode="none"
+            android:clickable="false" />
 
         <TextView
             android:id="@+id/tv_precio"
@@ -44,8 +35,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <RadioGroup
+            android:id="@+id/rGroupModopago"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/rbt_Efectivo">
 
             <RadioButton
                 android:id="@+id/rbt_Efectivo"
@@ -54,16 +47,17 @@
                 android:text="Efectivo" />
 
             <RadioButton
-                android:id="@+id/rbt_MPago"
+                android:id="@+id/rbt_Debito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pago Online" />
+                android:text="Debito" />
 
             <RadioButton
-                android:id="@+id/rbt_Voucher"
+                android:id="@+id/rbt_Credito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Voucher" />
+                android:text="Credito" />
+
         </RadioGroup>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -73,12 +67,6 @@
             android:layout_gravity="end|bottom"
             android:clickable="true"
             tools:src="@tools:sample/backgrounds/scenic" />
-
-        <TextView
-            android:id="@+id/tv_prueba"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
     </LinearLayout>
 

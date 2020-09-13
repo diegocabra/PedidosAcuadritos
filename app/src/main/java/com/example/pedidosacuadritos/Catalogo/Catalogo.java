@@ -72,6 +72,12 @@ public class Catalogo {
         return ListaPedidos;
     }
 
+    public void actualizarPrecios(int porcentaje){
+       double percent = 1+(porcentaje/100);
+        for (Producto p :ListaProductos)  {
+           p.setPrecio(p.getPrecio()*percent);
+        }
+    }
 
 
 }

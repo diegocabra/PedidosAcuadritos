@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.Pedido.Pedido;
@@ -43,10 +44,14 @@ public class detalle_Producto extends AppCompatActivity {
         String Titulo = prodSeleccionado.getTela();
         String descripcion = prodSeleccionado.getBolsillo();
 
-
-
         tvTitulo.setText(Titulo);
         tv_descripcion.setText(descripcion);
+
+
+
+
+        productosViewmodel = ViewModelProviders.of(this).get(ProductosViewModel.class);
+        productosViewmodel.addProducto(prodSeleccionado);
 
         /** Floating Button         */
         agregarPedido = findViewById(R.id.FAB_agregarProducto);
@@ -55,19 +60,16 @@ public class detalle_Producto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Pedido pedidoTemporal = Pedido.getInstance();
+                pedidoTemporal.addProducto(prodSeleccionado);
+                Toast.makeText(getApplication(),"Producto agregado",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), p.getCliente().getNombre(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        PageViewModel pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
-        //Creo el observer del MutableLiveData
 
-        final Observer<Pedido> pedidoObserver = new Observer<Pedido>() {
-            @Override
-            public void onChanged(Pedido pedido) {
-                tvTitulo.setText(pedido.getCliente().getNombre());
-            }
-        };
-        pageViewModel.getPedido().observe(this, pedidoObserver);
+
       }
 
 

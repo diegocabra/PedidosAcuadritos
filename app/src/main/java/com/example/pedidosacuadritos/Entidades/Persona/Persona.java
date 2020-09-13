@@ -72,7 +72,8 @@ public abstract class Persona implements Serializable {
     }
 
     public String toString(){
-        return nombre;
+        String toReturn = nombre + "\n" +  " Tel: "+ telefono;
+        return toReturn;
     }
 }
 

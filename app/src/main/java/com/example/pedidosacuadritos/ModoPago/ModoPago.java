@@ -2,33 +2,39 @@ package com.example.pedidosacuadritos.ModoPago;
 
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 
+import java.util.List;
+
 public abstract class ModoPago {
-    protected Producto producto;
-    protected double descuentoCredito;
-    protected double descuentoDebito;
-
-    public ModoPago(Producto producto){
-        this.producto = producto;
-    }
-    public abstract double obtenerGanancia();
+    protected List<Producto> listproductos;
+    protected double impuestoCredito = 0.15;
+    protected double impuestoDebito = 0.08;
 
 
-    public double getDescuentoCredito() {
-
-        return descuentoCredito;
+    public ModoPago(List<Producto> productos){
+        listproductos = productos;
     }
 
-    public void setDescuentoCredito(double descuentoCredito) {
+    /**
+     *
+     * @return el valor del producto mas los impuestos por comprar con el metodo de pago elegido . "Retorna precio final/cliente"
+     */
+    public abstract double getPrecioFinal();
 
-        this.descuentoCredito = descuentoCredito;
+    public double getImpuestoCredito() {
+
+        return impuestoCredito;
+    }
+    // Expresado en porcentaje , ejemplo todas las ventas con credito tienen un impuesto de 7% . Ingresar un numero mayor a 0
+    public void setImpuestoCredito(double impuestoCredito) {
+
+        this.impuestoCredito = (impuestoCredito/100);
     }
 
-
-    public double getDescuentoDebito() {
-        return descuentoDebito;
+    public double getImpuestoDebito() {
+        return impuestoDebito;
     }
 
-    public void setDescuentoDebito(double descuentoDebito) {
-        this.descuentoDebito = descuentoDebito;
+    public void setImpuestoDebito(double impuestoDebito) {
+        this.impuestoDebito = impuestoDebito/100;
     }
 }

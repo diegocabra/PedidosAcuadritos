@@ -20,30 +20,26 @@ public class Pedido {
     protected Vendedor vendedor;
     protected int ganancia;
     protected Date fecha;
+    private static Pedido instance;
 
-
-    public Pedido(Cliente cliente) {
+    private Pedido() {
         id= UUID.randomUUID().toString();
-        this.cliente = cliente;
         productos = new LinkedList<Producto>();
         //this.vendedor = vendedor;  En un futuro podemos tomar nota de quien registro dicho pedido
         fecha = new Date();// fecha que se genera el pedido;
     }
 
-    public Pedido(Producto producto, ModoPago modoPago, Cliente cliente) {
-        id= UUID.randomUUID().toString();
+    public static Pedido getInstance() {
 
-        this.modoPago = modoPago;
-        this.cliente = cliente;
-        fecha = new Date();// fecha que se genera el pedido;
-    }
+        if (instance == null)
+            instance = new Pedido();
 
-    public Pedido (){
-
+        return instance;
     }
 
 
     public String getId(){
+
         return id;
     }
 
@@ -52,14 +48,14 @@ public class Pedido {
         return modoPago;
     }
 
-    public void setModoPago(Producto producto) {
+    public void setModoPago(ModoPago modoPago) {
 
         this.modoPago = modoPago;
     }
 
-    public ListIterator<Producto> getProductos() {
+    public List<Producto> getProductos() {
 
-        return productos.listIterator();
+        return productos;
     }
 
     public void setCliente(Cliente c){
@@ -74,5 +70,8 @@ public class Pedido {
         return cliente;
     }
 
+    public Double getPreciototal(){
+       return modoPago.getPrecioFinal();
+    }
 
 }

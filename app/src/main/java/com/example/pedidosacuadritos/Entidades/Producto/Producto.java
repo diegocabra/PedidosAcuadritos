@@ -11,32 +11,20 @@ public class Producto implements Serializable {
     protected String bies1;
     protected String bies2;
     protected String id;
-
-    public int getCantCierres() {
-        return cantCierres;
-    }
-
-    public void setCantCierres(int cantCierres) {
-        this.cantCierres = cantCierres;
-
-    }
-
     protected int cantCierres;
     protected int costoConfeccion;
 
-    public String getId(){
-        return id;
-    }
-    public  Producto(){
 
+    public  Producto(){
     }
+
     public Producto(String tela, String bolsillo, String bies1, String bies2) {
         id= UUID.randomUUID().toString();
         this.tela = tela;
         this.bolsillo = bolsillo;
         this.bies1 = bies1;
         this.bies2 = bies2;
-
+        this.precio = precio;
     }
 
    public double getPrecio() {
@@ -49,7 +37,20 @@ public class Producto implements Serializable {
         return cantTela;
     }
 
-    public void setPrecio(int precio) {
+    public int getCantCierres() {
+        return cantCierres;
+    }
+
+    public void setCantCierres(int cantCierres) {
+        this.cantCierres = cantCierres;
+
+    }
+
+
+    public String getId(){
+        return id;
+    }
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -89,6 +90,8 @@ public class Producto implements Serializable {
         this.bies2 = bies2;
     }
 
-
+    public String toString(){
+        return tela+"\n" + " "+ bolsillo;
+    }
 
 }

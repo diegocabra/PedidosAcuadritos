@@ -51,7 +51,7 @@ public class BaseDatoService {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Productos");
         myRef.child(producto.getId()).setValue(producto);
-        // TODO: 23/08/20 Agregar genericidad para poder agregar todos los productos pero por grupos , ejemplo los Adultos en una hoja , los niños en otra hoja.  
+        // TODO: 23/08/20 Agregar genericidad para poder agregar todos los productos pero por grupos , ejemplo los Adultos en una hoja , los niños en otra "hoja".
 
     }
 
