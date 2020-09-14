@@ -63,7 +63,7 @@ public class detalle_Producto extends AppCompatActivity {
                 Pedido pedidoTemporal = Pedido.getInstance();
                 pedidoTemporal.addProducto(prodSeleccionado);
                 Toast.makeText(getApplication(),"Producto agregado",Toast.LENGTH_LONG).show();
-                //Toast.makeText(getActivity(), p.getCliente().getNombre(), Toast.LENGTH_SHORT).show();
+                
 
             }
         });

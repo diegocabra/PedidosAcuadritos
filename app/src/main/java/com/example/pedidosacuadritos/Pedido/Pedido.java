@@ -18,7 +18,6 @@ public class Pedido {
     protected ModoPago modoPago;
     protected Cliente cliente;
     protected Vendedor vendedor;
-    protected int ganancia;
     protected Date fecha;
     private static Pedido instance;
 

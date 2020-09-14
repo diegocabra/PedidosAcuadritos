@@ -116,13 +116,11 @@ public class CerrarPedido_fragment extends Fragment {
                 pageViewModel.getPedido().observe(getViewLifecycleOwner(), new Observer<Pedido>() {
                     @Override
                     public void onChanged(Pedido pedido) {
-                        String str = "";
+                        BaseDatoService Basedatos = BaseDatoService.getInstance();
+                        Basedatos.write(pedido);
+                        Toast.makeText(getActivity(), "Pedido Confirmado" , Toast.LENGTH_LONG).show();
 
-                        for (Producto p :pedido.getProductos())
-                            str =str+""+ p.getBolsillo() +"\n";
-                        //Estas son lineas de prieba para testera el viewmodel.
-                        Toast.makeText(getActivity(), pedido.getCliente().getNombre() + "Pedidos : "+ str , Toast.LENGTH_SHORT).show();
-                    }
+                        }
                 });
 
 

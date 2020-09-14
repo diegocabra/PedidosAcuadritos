@@ -1,28 +1,57 @@
 package com.example.pedidosacuadritos.Utilidades;
 
-import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
-import com.example.pedidosacuadritos.Pedido.Pedido;
 
-public class CerrarPedido {
+import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+
+
+
+public class Detalle_Pedido {
 
     /**
-     * Esta clase va a manejar los datos de los distintos Fragments para poder llegar al fragment final y poder cerrar el pedido .
-     * O eso espero .
+     *Esta clase va a representar cada renglon de mi listado del pedido .
+     * Es decir , aqui voy a guardar el Producto , el talle de ese producto y la cantidad solicitada.
      */
 
-    protected Cliente cliente;
-    protected Pedido pedido;
+   protected Producto producto;
+   protected String talle;
+   protected int cantidad;
+
+    public Detalle_Pedido(Producto producto, String talle,int cantidad) {
+        this.cantidad = cantidad;
+        this.talle = talle;
+        this.producto = producto;
+    }
 
 
-    public void setCliente( Cliente c){
-        cliente= c;
-        }
+    public Producto getProducto() {
+        return producto;
+    }
 
-     public String getName(){
-        return cliente.getNombre();
-     }
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 
+    public String getTalle() {
+        return talle;
+    }
+
+    public void setTalle(String talle) {
+        this.talle = talle;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 }
+
+
+
+
+
 
 
 /*
