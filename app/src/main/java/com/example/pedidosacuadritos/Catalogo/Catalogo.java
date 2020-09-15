@@ -1,7 +1,6 @@
 package com.example.pedidosacuadritos.Catalogo;
 
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
-import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 
 import java.util.LinkedList;
@@ -13,50 +12,18 @@ public class Catalogo {
     */
 
     protected List<Producto> ListaProductos;
-    protected List<Pedido>   ListaPedidos;
+
     //private static Catalogo instance;
 
 
 
     public Catalogo() {
         ListaProductos = new LinkedList<>();
-        ListaPedidos = new LinkedList<>();
+         }
 
-
-    }
-
-    // En un primer momento me parecio util que sea un singleton , pero fue al pedo porque los productos los bajo y subo desde la nube.
-    // Utilizamos el patron Singleton para que exista un unico inventario y llevar un control de productos
-
-    /*public static Catalogo getInstance() {
-
-        if (instance == null)
-            instance = new Catalogo();
-
-        return instance;
-
-   }*/
-
-   /**En cuestiones de buena programacion y/o Orientado a objetos, que es lo correcto ?
-    Hago una clase de inventario , en donde almaceno todos los productos generados o
-    subo cada producto generado y lo descargo cada vez que necesito el inventario?
-
-    De ultima , puedo subir cada producto generado y descargarlos todos a mi clase inventario y trabajar con esta clase.
-    de esta manera tenemos una sola conexion con el servidor.
-
-
-    **/
-
-    public void AgregarProducto(Producto p){
+     public void AgregarProducto(Producto p){
         BaseDatoService Basedatos = BaseDatoService.getInstance();
         Basedatos.write(p);
-
-    }
-
-    public void AgregarPedido(Pedido p){
-        BaseDatoService Basedatos = BaseDatoService.getInstance();
-        Basedatos.write(p);
-
     }
 
 
@@ -66,18 +33,7 @@ public class Catalogo {
          return ListaProductos;
     }
 
-    public List<Pedido> getCatalogoPedidos() {
-        BaseDatoService Basedatos = BaseDatoService.getInstance();
-        ListaPedidos = Basedatos.listarPedidos();
-        return ListaPedidos;
-    }
 
-    public void actualizarPrecios(int porcentaje){
-       double percent = 1+(porcentaje/100);
-        for (Producto p :ListaProductos)  {
-           p.setPrecio(p.getPrecio()*percent);
-        }
-    }
 
 
 }

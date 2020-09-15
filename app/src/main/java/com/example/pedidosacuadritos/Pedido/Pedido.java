@@ -10,11 +10,12 @@ import com.example.pedidosacuadritos.Entidades.Persona.Vendedor;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.ModoPago.ModoPago;
 import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
+import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
 
 public class Pedido {
 
     protected String id;
-    protected List<Producto> productos;
+    protected List<Detalle_Orden> ordenes;
     protected ModoPago modoPago;
     protected Cliente cliente;
     protected Vendedor vendedor;
@@ -23,7 +24,7 @@ public class Pedido {
 
     private Pedido() {
         id= UUID.randomUUID().toString();
-        productos = new LinkedList<Producto>();
+        ordenes = new LinkedList<Detalle_Orden>();
         //this.vendedor = vendedor;  En un futuro podemos tomar nota de quien registro dicho pedido
         fecha = new Date();// fecha que se genera el pedido;
     }
@@ -52,17 +53,17 @@ public class Pedido {
         this.modoPago = modoPago;
     }
 
-    public List<Producto> getProductos() {
+    public List<Detalle_Orden> getOrdenes() {
 
-        return productos;
+        return ordenes;
     }
 
     public void setCliente(Cliente c){
         cliente = c;
     }
 
-    public void addProducto(Producto producto) {
-        productos.add(producto);
+    public void addOrden(Detalle_Orden orden) {
+        ordenes.add(orden);
     }
 
     public Cliente getCliente(){

@@ -17,6 +17,7 @@ public class PageViewModel extends ViewModel {
 
     private MutableLiveData<Pedido> mPedido = new MutableLiveData<>();
     private MutableLiveData<List<Cliente>> clientes;
+    private MutableLiveData<List<Detalle_Orden>> ordenes;
 
     public void setPedido (Pedido p){
         mPedido.setValue(p);
@@ -30,7 +31,6 @@ public class PageViewModel extends ViewModel {
 
         return mPedido;
     }
-
 
     public LiveData<List<Cliente>> getClientes() {
         if (clientes == null) {
@@ -46,6 +46,8 @@ public class PageViewModel extends ViewModel {
         List<Cliente> Lclientes = Basedatos.listarClientes();        // Descargo de la nube los clientes ya cargados para luego mostrar en el listView
        clientes.setValue(Lclientes);
     }
+
+
 
 
 

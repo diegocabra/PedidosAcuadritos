@@ -1,17 +1,17 @@
 package com.example.pedidosacuadritos.ModoPago;
 
-import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
 
 import java.util.List;
 
 public abstract class ModoPago {
-    protected List<Producto> listproductos;
+    protected List<Detalle_Orden> listOrdenes;
     protected double impuestoCredito = 0.15;
     protected double impuestoDebito = 0.08;
 
 
-    public ModoPago(List<Producto> productos){
-        listproductos = productos;
+    public ModoPago(List<Detalle_Orden> ordenes){
+        listOrdenes = ordenes;
     }
 
     /**
@@ -37,4 +37,15 @@ public abstract class ModoPago {
     public void setImpuestoDebito(double impuestoDebito) {
         this.impuestoDebito = impuestoDebito/100;
     }
+
+    protected double getPrecio() {
+        double precioTotal = 0;
+
+        if (listOrdenes.size() > 0)
+            for (Detalle_Orden orden : listOrdenes) {
+                precioTotal += orden.getProducto().getPrecio() * orden.getCantidad();
+            }
+        return precioTotal;
+    }
+
 }

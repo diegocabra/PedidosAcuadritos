@@ -1,6 +1,5 @@
 package com.example.pedidosacuadritos.Entidades.Producto;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Producto implements Serializable {
@@ -8,11 +7,11 @@ public class Producto implements Serializable {
     protected double cantTela;
     protected String tela;
     protected String bolsillo;
-    protected String bies1;
-    protected String bies2;
+    protected String detalle1;
+    protected String detalle2;
     protected String id;
-    protected int cantCierres;
-    protected int costoConfeccion;
+    protected int costoConfeccion;// La intencion futura es sacar costos que se deben pagar por mano de obra por cada producto , para luego obtener el total por pedido , etc.  .
+
 
 
     public  Producto(){
@@ -22,28 +21,14 @@ public class Producto implements Serializable {
         id= UUID.randomUUID().toString();
         this.tela = tela;
         this.bolsillo = bolsillo;
-        this.bies1 = bies1;
-        this.bies2 = bies2;
+        this.detalle1 = bies1;
+        this.detalle2 = bies2;
         this.precio = precio;
     }
 
    public double getPrecio() {
 
         return precio;
-    }
-
-    public double getCantTela() {
-
-        return cantTela;
-    }
-
-    public int getCantCierres() {
-        return cantCierres;
-    }
-
-    public void setCantCierres(int cantCierres) {
-        this.cantCierres = cantCierres;
-
     }
 
 
@@ -74,20 +59,20 @@ public class Producto implements Serializable {
         this.bolsillo = bolsillo;
     }
 
-    public String getBies1() {
-        return bies1;
+    public String getDetalle1() {
+        return detalle1;
     }
 
-    public void setBies1(String bies1) {
-        this.bies1 = bies1;
+    public void setDetalle1(String detalle1) {
+        this.detalle1 = detalle1;
     }
 
-    public String getBies2() {
-        return bies2;
+    public String getDetalle2() {
+        return detalle2;
     }
 
-    public void setBies2(String bies2) {
-        this.bies2 = bies2;
+    public void setDetalle2(String detalle2) {
+        this.detalle2 = detalle2;
     }
 
     public String toString(){

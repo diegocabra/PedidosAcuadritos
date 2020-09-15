@@ -15,14 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pedidosacuadritos.Entidades.Producto.Adulto;
-import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.ModoPago.Credito;
 import com.example.pedidosacuadritos.ModoPago.Debito;
 import com.example.pedidosacuadritos.ModoPago.Efectivo;
 import com.example.pedidosacuadritos.ModoPago.ModoPago;
 import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
+import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
 import com.example.pedidosacuadritos.Utilidades.PageViewModel;
 import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 import com.example.pedidosacuadritos.Utilidades.ProductosViewModel;
@@ -37,14 +36,14 @@ public class CerrarPedido_fragment extends Fragment {
     private TextView tv_nombreCliente,tv_precio,tvdeprueba;
     private RadioGroup modoPago;
     private PageViewModel pageViewModel;
-    private ListView lv_prodSeleccionados;
+    private ListView lv_OrdenesActuales;
     private FloatingActionButton FAB_ConfirmarPedido;
     private Pedido nuevo_pedido;
     private Cliente cli_actual;
     private String pedidoSeleccionado;
     private ProductosViewModel productosViewModel;
-    private ArrayAdapter<Producto> arrayAdapterProductos;
-    private List<Producto> lista_prodSeleccionados = new ArrayList<Producto>();
+    private ArrayAdapter<Detalle_Orden> arrayAdapterOrdenes;
+    private List<Detalle_Orden> ordenesActuales = new ArrayList<Detalle_Orden>();
 
     public CerrarPedido_fragment() {
         // Required empty public constructor
@@ -66,18 +65,17 @@ public class CerrarPedido_fragment extends Fragment {
             @Override
             public void onChanged(Pedido pedido) {
                 tv_nombreCliente.setText("CLIENTE : "+ pedido.getCliente().getNombre());
-            }
+          }
         });
 
 
-        productosViewModel = ViewModelProviders.of(requireActivity()).get(ProductosViewModel.class);
-
         tv_precio  = getView().findViewById(R.id.tv_precio);
+        lv_OrdenesActuales = getView().findViewById(R.id.lv_productos);
 
-        lv_prodSeleccionados = getView().findViewById(R.id.lv_productos);
-        lista_prodSeleccionados = Pedido.getInstance().getProductos();
-        arrayAdapterProductos = new ArrayAdapter<Producto>(getActivity(), android.R.layout.simple_list_item_1, lista_prodSeleccionados);  // Armo un Array de productos para armar el ListView
-        lv_prodSeleccionados.setAdapter(arrayAdapterProductos);
+
+        ordenesActuales = Pedido.getInstance().getOrdenes();
+        arrayAdapterOrdenes = new ArrayAdapter<Detalle_Orden>(getActivity(), android.R.layout.simple_list_item_1, ordenesActuales);  // Armo un Array de productos para armar el ListView
+        lv_OrdenesActuales.setAdapter(arrayAdapterOrdenes);
 
 
         modoPago = getView().findViewById(R.id.rGroupModopago);
@@ -88,19 +86,24 @@ public class CerrarPedido_fragment extends Fragment {
         modoPago.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    Pedido p = Pedido.getInstance();
+
 
                 Double precioTotal = 0.0;
+
+                  Pedido p = Pedido.getInstance();
+
+                 //todo Revisar el metodo de los precios
+
                 ModoPago mp = null;
                 if ( efectivo.isChecked())
-                     p.setModoPago(new Efectivo(p.getProductos()));
+                     p.setModoPago(new Efectivo(p.getOrdenes()));
                  if (debito.isChecked())
-                     p.setModoPago(new Debito(p.getProductos()));
+                     p.setModoPago(new Debito(p.getOrdenes()));
                  if (credito.isChecked())
-                     p.setModoPago(new Credito(p.getProductos()));
+                     p.setModoPago(new Credito(p.getOrdenes()));
 
                 tv_precio.setText(Double.toString(p.getPreciototal()));
-            }
+                }
         });
 
 
@@ -109,7 +112,7 @@ public class CerrarPedido_fragment extends Fragment {
         FAB_ConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BaseDatoService datoService = BaseDatoService.getInstance();
+
                 pageViewModel.getPedido().observe(getViewLifecycleOwner(), new Observer<Pedido>() {
                     @Override
                     public void onChanged(Pedido pedido) {

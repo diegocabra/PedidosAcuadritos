@@ -9,12 +9,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
 import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.example.pedidosacuadritos.R;
+import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
 import com.example.pedidosacuadritos.Utilidades.PageViewModel;
 import com.example.pedidosacuadritos.Utilidades.ProductosViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,9 +25,6 @@ public class detalle_Producto extends AppCompatActivity {
     TextView tvTitulo, tv_descripcion,tv_prueba;
     EditText etCantidad;
     FloatingActionButton agregarPedido;
-    private ProductosViewModel productosViewmodel;
-    private PageViewModel pageViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,8 @@ public class detalle_Producto extends AppCompatActivity {
         tvTitulo = findViewById(R.id.tv_Ttuloppal);
         tv_descripcion =findViewById(R.id.tv_descripcion);
         etCantidad = findViewById(R.id.eT_Cantidad);
+        etCantidad.setText("1"); // Por defecto queda cargado cantidad 1 ,
+        Spinner spinnerTalles = findViewById(R.id.spin_talles);
 
         //Mediante un "tag" Consigo el producto seleccionado en el adapter para luego conseguir el titulo y descripcion ( o lo que necesite)
         Intent i = getIntent();
@@ -47,11 +48,9 @@ public class detalle_Producto extends AppCompatActivity {
         tvTitulo.setText(Titulo);
         tv_descripcion.setText(descripcion);
 
+        final String talleSeleccionado = spinnerTalles.getSelectedItem().toString();
 
 
-
-        productosViewmodel = ViewModelProviders.of(this).get(ProductosViewModel.class);
-        productosViewmodel.addProducto(prodSeleccionado);
 
         /** Floating Button         */
         agregarPedido = findViewById(R.id.FAB_agregarProducto);
@@ -59,10 +58,13 @@ public class detalle_Producto extends AppCompatActivity {
         agregarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               int cantidad = Integer.parseInt(etCantidad.getText().toString());
+                Detalle_Orden orden = new Detalle_Orden(prodSeleccionado,talleSeleccionado,cantidad);
+                Pedido pedidoActual = Pedido.getInstance();
+                pedidoActual.addOrden(orden);
 
-                Pedido pedidoTemporal = Pedido.getInstance();
-                pedidoTemporal.addProducto(prodSeleccionado);
-                Toast.makeText(getApplication(),"Producto agregado",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplication()," Producto agregado ",Toast.LENGTH_LONG).show();
                 
 
             }

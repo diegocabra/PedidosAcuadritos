@@ -46,16 +46,10 @@ public class Cliente_fragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
-     @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.fragment_cliente, container, false);
-
-
-
-
         return view;
     }
 
@@ -65,7 +59,6 @@ public class Cliente_fragment extends Fragment {
        ActualizarListView();
 
     }
-
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         getEt_Nombre = getView().findViewById(R.id.et_Nombre);
@@ -77,12 +70,8 @@ public class Cliente_fragment extends Fragment {
         bt_Clean = getView().findViewById(R.id.bt_clean);
         bt_Eliminar = getView().findViewById(R.id.bt_Eliminar);
 
-
         pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class); //Inicializo el viewModel
-
         final  ListView listV_Clientes = view.findViewById(R.id.listV_Clientes);
-
-
 
         pageViewModel.getClientes().observe(this, new Observer<List<Cliente>>() {
             @Override
@@ -91,14 +80,6 @@ public class Cliente_fragment extends Fragment {
                 listV_Clientes.setAdapter(arrayAdapterCliente);
             }
         });
-
-
-
-
-
-
-
-
 
         personaSeleccionada = PersonaSeleccionado(listV_Clientes);
 
@@ -123,7 +104,6 @@ public class Cliente_fragment extends Fragment {
 
             }
         });
-
 
         bt_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,9 +144,9 @@ public class Cliente_fragment extends Fragment {
 
     }
 
-    private void ActualizarListView() { // TODO: 26/08/20 Revisar el listView, en ciertas ocasiones no muestra , creo que se debe al Onresume o algun ciclo parecido
+    private void ActualizarListView() {
         //Actualizo el Array Adapter de clientes
-                arrayAdapterCliente.notifyDataSetChanged();
+        arrayAdapterCliente.notifyDataSetChanged();
     }
 
     private Persona PersonaSeleccionado(ListView listV_Clientes) {
