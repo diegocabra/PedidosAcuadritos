@@ -105,9 +105,6 @@ public class CerrarPedido_fragment extends Fragment {
 
 
 
-//
-
-
         FloatingActionButton FAB_ConfirmarPedido = getView().findViewById(R.id.fbt_confirmarPedido);
         FAB_ConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +119,6 @@ public class CerrarPedido_fragment extends Fragment {
 
                         }
                 });
-
-
-
 
             }
         });

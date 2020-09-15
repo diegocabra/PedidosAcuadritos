@@ -4,6 +4,7 @@ package com.example.pedidosacuadritos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 
@@ -43,7 +44,6 @@ public class Cliente_fragment extends Fragment {
 
     public Cliente_fragment() {
         // Required empty public constructor
-
     }
 
 
@@ -51,8 +51,12 @@ public class Cliente_fragment extends Fragment {
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cliente, container, false);
+         View view = inflater.inflate(R.layout.fragment_cliente, container, false);
 
+
+
+
+        return view;
     }
 
    @Override
@@ -73,15 +77,29 @@ public class Cliente_fragment extends Fragment {
         bt_Clean = getView().findViewById(R.id.bt_clean);
         bt_Eliminar = getView().findViewById(R.id.bt_Eliminar);
 
-       ListView listV_Clientes = getView().findViewById(R.id.listV_Clientes);
-
-        BaseDatoService Basedatos = BaseDatoService.getInstance();
-        listaClientes = Basedatos.listarClientes(); // Descargo de la nube los clientes ya cargados para luego mostrar en el listView
-
-        arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(), android.R.layout.simple_list_item_1, listaClientes);  // Armo un Array de Clientes para armar el ListView
-        listV_Clientes.setAdapter(arrayAdapterCliente);
 
         pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class); //Inicializo el viewModel
+
+        final  ListView listV_Clientes = view.findViewById(R.id.listV_Clientes);
+
+
+
+        pageViewModel.getClientes().observe(this, new Observer<List<Cliente>>() {
+            @Override
+            public void onChanged(List<Cliente> clientes) {
+                arrayAdapterCliente = new ArrayAdapter<Cliente>(getActivity(),android.R.layout.simple_list_item_1,clientes);
+                listV_Clientes.setAdapter(arrayAdapterCliente);
+            }
+        });
+
+
+
+
+
+
+
+
+
         personaSeleccionada = PersonaSeleccionado(listV_Clientes);
 
         bt_Actualizar.setOnClickListener(new View.OnClickListener() {
@@ -148,11 +166,11 @@ public class Cliente_fragment extends Fragment {
 
     private void ActualizarListView() { // TODO: 26/08/20 Revisar el listView, en ciertas ocasiones no muestra , creo que se debe al Onresume o algun ciclo parecido
         //Actualizo el Array Adapter de clientes
-        arrayAdapterCliente.clear();
-        arrayAdapterCliente.notifyDataSetChanged();
+                arrayAdapterCliente.notifyDataSetChanged();
     }
 
     private Persona PersonaSeleccionado(ListView listV_Clientes) {
+
         listV_Clientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
