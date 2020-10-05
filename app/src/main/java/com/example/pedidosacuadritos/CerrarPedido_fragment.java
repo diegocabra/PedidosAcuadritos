@@ -25,6 +25,7 @@ import com.example.pedidosacuadritos.Utilidades.PageViewModel;
 import com.example.pedidosacuadritos.Utilidades.ProductosViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +100,7 @@ public class CerrarPedido_fragment extends Fragment {
         final RadioButton credito = getView().findViewById(R.id.rbt_Credito);
         final RadioButton debito = getView().findViewById(R.id.rbt_Debito);
         Pedido p = Pedido.getInstance();
+
         tv_precio.setText(Double.toString(p.getPreciototal()));
        modoPago.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

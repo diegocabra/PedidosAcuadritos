@@ -14,7 +14,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <TextView
         android:id="@+id/tv_Ttuloppal"
@@ -91,6 +92,7 @@
         android:id="@+id/FAB_agregarProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#B1AC7D"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#7CA74C" />

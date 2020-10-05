@@ -59,6 +59,8 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         TextView textView = viewHolder.textDescription;
         textView.setText(producto.getBolsillo());
         ImageView im = viewHolder.img;
+
+        //todo : en un futuro cada producto va a tener una imagen
         im.setImageResource(R.drawable.azulbolsillorayado);
 
         //Mediante este if puedo saber cual es la posicion seleccionada y la cambio de color Rojo

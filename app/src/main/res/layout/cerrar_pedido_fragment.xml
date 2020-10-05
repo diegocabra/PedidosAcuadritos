@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
             tools:src="@tools:sample/backgrounds/scenic" />
 
     </LinearLayout>
