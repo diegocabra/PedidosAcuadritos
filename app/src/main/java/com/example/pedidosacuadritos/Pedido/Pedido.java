@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.example.pedidosacuadritos.Entidades.Persona.Vendedor;
 import com.example.pedidosacuadritos.Entidades.Producto.Producto;
+import com.example.pedidosacuadritos.ModoPago.Efectivo;
 import com.example.pedidosacuadritos.ModoPago.ModoPago;
 import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
@@ -27,6 +28,7 @@ public class Pedido {
         ordenes = new LinkedList<Detalle_Orden>();
         //this.vendedor = vendedor;  En un futuro podemos tomar nota de quien registro dicho pedido
         fecha = new Date();// fecha que se genera el pedido;
+        modoPago= new Efectivo(ordenes); // Por defecto se genera el pago con pago efectivo .
     }
 
     public static Pedido getInstance() {

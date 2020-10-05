@@ -92,7 +92,7 @@ public class BaseDatoService {
     }
 
 
-    // TODO: 26/08/20  ¿ Acaso este listar datos, no se podra hacer mas generico ? Alta paja, los dos iguales
+    // TODO: 26/08/20  ¿ Acaso este listar datos, no se podra hacer mas generico ?
 
     public List<Producto> listarProductos(){
         final List<Producto> ListaProductos = new ArrayList<Producto>();

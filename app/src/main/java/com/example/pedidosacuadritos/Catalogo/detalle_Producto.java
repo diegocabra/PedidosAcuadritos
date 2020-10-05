@@ -33,6 +33,7 @@ public class detalle_Producto extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+
         tvTitulo = findViewById(R.id.tv_Ttuloppal);
         tv_descripcion =findViewById(R.id.tv_descripcion);
         etCantidad = findViewById(R.id.eT_Cantidad);

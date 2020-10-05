@@ -18,12 +18,10 @@ import android.widget.Toast;
 import com.example.pedidosacuadritos.ModoPago.Credito;
 import com.example.pedidosacuadritos.ModoPago.Debito;
 import com.example.pedidosacuadritos.ModoPago.Efectivo;
-import com.example.pedidosacuadritos.ModoPago.ModoPago;
 import com.example.pedidosacuadritos.Pedido.Pedido;
 import com.example.pedidosacuadritos.Utilidades.BaseDatoService;
 import com.example.pedidosacuadritos.Utilidades.Detalle_Orden;
 import com.example.pedidosacuadritos.Utilidades.PageViewModel;
-import com.example.pedidosacuadritos.Entidades.Persona.Cliente;
 import com.example.pedidosacuadritos.Utilidades.ProductosViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,15 +31,12 @@ import java.util.List;
 
 public class CerrarPedido_fragment extends Fragment {
 
-    private TextView tv_nombreCliente,tv_precio,tvdeprueba;
+    private TextView tv_nombreCliente,tv_precio;
     private RadioGroup modoPago;
     private PageViewModel pageViewModel;
     private ListView lv_OrdenesActuales;
-    private FloatingActionButton FAB_ConfirmarPedido;
-    private Pedido nuevo_pedido;
-    private Cliente cli_actual;
-    private String pedidoSeleccionado;
-    private ProductosViewModel productosViewModel;
+
+    private ProductosViewModel productosViewModel;   // ViewModel  alternativo
     private ArrayAdapter<Detalle_Orden> arrayAdapterOrdenes;
     private List<Detalle_Orden> ordenesActuales = new ArrayList<Detalle_Orden>();
 
@@ -54,7 +49,7 @@ public class CerrarPedido_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-            return inflater.inflate(R.layout.fragment_pedido, container, false);
+            return inflater.inflate(R.layout.cerrar_pedido_fragment, container, false);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -70,42 +65,10 @@ public class CerrarPedido_fragment extends Fragment {
 
 
         tv_precio  = getView().findViewById(R.id.tv_precio);
-        lv_OrdenesActuales = getView().findViewById(R.id.lv_productos);
+        CargarlistaPedidos();
 
 
-        ordenesActuales = Pedido.getInstance().getOrdenes();
-        arrayAdapterOrdenes = new ArrayAdapter<Detalle_Orden>(getActivity(), android.R.layout.simple_list_item_1, ordenesActuales);  // Armo un Array de productos para armar el ListView
-        lv_OrdenesActuales.setAdapter(arrayAdapterOrdenes);
-
-
-        modoPago = getView().findViewById(R.id.rGroupModopago);
-        int id = modoPago.getCheckedRadioButtonId();
-        final RadioButton efectivo = getView().findViewById(R.id.rbt_Efectivo);
-        final RadioButton credito = getView().findViewById(R.id.rbt_Credito);
-        final RadioButton debito = getView().findViewById(R.id.rbt_Debito);
-        modoPago.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-                Double precioTotal = 0.0;
-
-                  Pedido p = Pedido.getInstance();
-
-                 //todo Revisar el metodo de los precios
-
-                ModoPago mp = null;
-                if ( efectivo.isChecked())
-                     p.setModoPago(new Efectivo(p.getOrdenes()));
-                 if (debito.isChecked())
-                     p.setModoPago(new Debito(p.getOrdenes()));
-                 if (credito.isChecked())
-                     p.setModoPago(new Credito(p.getOrdenes()));
-
-                tv_precio.setText(Double.toString(p.getPreciototal()));
-                }
-        });
-
+        cargarPrecio();
 
 
         FloatingActionButton FAB_ConfirmarPedido = getView().findViewById(R.id.fbt_confirmarPedido);
@@ -127,10 +90,55 @@ public class CerrarPedido_fragment extends Fragment {
         });
 
 
+    }
+
+    private void cargarPrecio() {
+        modoPago = getView().findViewById(R.id.rGroupModopago);
+        int id = modoPago.getCheckedRadioButtonId();
+        final RadioButton efectivo = getView().findViewById(R.id.rbt_Efectivo);
+        final RadioButton credito = getView().findViewById(R.id.rbt_Credito);
+        final RadioButton debito = getView().findViewById(R.id.rbt_Debito);
+        Pedido p = Pedido.getInstance();
+        tv_precio.setText(Double.toString(p.getPreciototal()));
+       modoPago.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+
+                Double precioTotal = 0.0;
+
+                  Pedido p = Pedido.getInstance();
+
+
+                if ( efectivo.isChecked())
+                     p.setModoPago(new Efectivo(p.getOrdenes()));
+                 if (debito.isChecked())
+                     p.setModoPago(new Debito(p.getOrdenes()));
+                 if (credito.isChecked())
+                     p.setModoPago(new Credito(p.getOrdenes()));
+
+                tv_precio.setText(Double.toString(p.getPreciototal()));
+                }
+        });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        CargarlistaPedidos();
+        cargarPrecio();
+
 
     }
 
+    private void CargarlistaPedidos() {
+        lv_OrdenesActuales = getView().findViewById(R.id.lv_productos);
 
+
+        ordenesActuales = Pedido.getInstance().getOrdenes();
+        arrayAdapterOrdenes = new ArrayAdapter<Detalle_Orden>(getActivity(), android.R.layout.simple_list_item_1, ordenesActuales);  // Armo un Array de productos para armar el ListView
+        lv_OrdenesActuales.setAdapter(arrayAdapterOrdenes);
+    }
 
 
 }
