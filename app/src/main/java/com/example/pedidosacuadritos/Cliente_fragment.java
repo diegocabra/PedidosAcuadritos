@@ -43,7 +43,7 @@ public class Cliente_fragment extends Fragment {
     private Pedido pedidoTemporal;
 
     public Cliente_fragment() {
-        // Required empty public constructor
+        // COnstructor vacio
     }
 
     @Override
